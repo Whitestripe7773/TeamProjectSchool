@@ -1,5 +1,10 @@
 class Rectangle{
 
+    /**
+     * @var {size of rectangle} Size
+     * @var {position on the x-axis of the rect} xPos
+     * @var {position on the y-axis of the rect} yPos
+     */
     size;
     xPos;
     yPos;
@@ -33,6 +38,9 @@ class Rectangle{
         return "Debug works!"
     }
 
+    /**
+     * ToDo Updating x-pos -> This has to be rethought first
+     */
     updateX(){
         var rectX = this.xSize;
         var rectY = this.ySize;
@@ -48,7 +56,9 @@ class Rectangle{
         return [x, this.y, ctx];
     }
     
-    
+    /**
+     * ToDo Updating y-pos -> This has to be rethought first
+     */
     updateY(){
     var rectX = this.xSize;
     var rectY = this.ySize;
@@ -65,13 +75,26 @@ class Rectangle{
     }
 }
 
+/**
+ * This method returns a random number from 0 to max (inclusive)
+ * @param {Max random number (inclusive)} max 
+ */
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
 
+/**
+ * This method returns a randomNumber for the x-position of the rectangle
+ */
 function getRandomX(){
-    var x = Math.floor(Math.random() * 100);
+    var x = getRandomInt(280) + 20;
     return x;
 }
 
+/**
+ * This method returns a randomNumber for the y-position of the rectangle
+ */
 function getRandomY(){
-    var y = Math.floor(Math.random() * 100);
+    var y = getRandomInt(280) + 20;
     return y;
 }

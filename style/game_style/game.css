@@ -1,30 +1,40 @@
 html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
-game-box {
-  display: block;
+.textcenter {
+  text-align: center;
 }
 
 .game-box {
-  position: fixed;
+  padding: 1%;
+  margin: 1%;
+  position: absolute;
   /* absolute */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  /* 100% */
-  height: 100vh;
-  /* 100% */
-  border: 5px solid black;
+  width: 97%;
+  /* 97% */
+  height: 97%;
+  /* 97% */
+  display: block;
+  border: 1px solid black;
+  overflow-x: hidden;
+}
+
+.data-box {
+  margin: 2vh;
+  opacity: 0.2;
+}
+
+#scoreboard {
+  margin-top: 10px;
+  padding: 20vh;
+}
+
+.hidden {
+  font-size: 0px;
+  padding: 20px;
 }
 /*# sourceMappingURL=game.css.map */
-
-ul{
-  list-style-type: none;
-  padding: 10px;
-  
-}
-li{
-  padding-bottom: 10px;
-}

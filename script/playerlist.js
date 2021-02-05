@@ -1,14 +1,15 @@
-$("document").keypress(function(event){
-    
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
-        alert('You pressed a "enter" key in somewhere');	
-    }
-    
-});
+// Add variables which needs to be used here: like points, rank etc.
 
-function spielerListeAnzeigen(){
+/**
+ * ToDo -> Implement show Scoreboard (also hide Scoreboard with the same key)
+ */
+function showHideScoreboard(){
+
 }
-function rangAktualisieren(){
+
+/**
+ * ToDo -> Implement updateRank, based on the points
+ */
+function updateRank(oldRank){
 
 }

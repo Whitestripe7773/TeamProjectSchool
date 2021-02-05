@@ -1,25 +1,43 @@
 html, body{
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
-game-box{
-    display: block;
+// Centers the text
+.textcenter{
+    text-align: center;
 }
 
+// In this box the whole game will be run
 .game-box{
-    position: fixed; /* absolute */
-    top: 0;
-    left: 0;
-    width: 100vw;    /* 100% */
-    height: 100vh;   /* 100% */
-    border: 5px solid black;
+    padding: 1%;
+    margin: 1%;
+    position: absolute; /* absolute */
+    width: 97%;    /* 97% */
+    height: 97%;   /* 97% */
+    display: block;
+    border: 1px solid black;
+    overflow-x: hidden;
 }
 
-/*
-.scoreboard{
-    ul{
-        list-style-type: none;
-    }
+// Increase overall margin and makes the text in the box less visible
+.data-box{
+    margin: 2vh;
+    opacity: 0.2;
 }
-*/
+
+// Increase margin on top and padding on each side
+#scoreboard{
+    margin-top: 10px;
+    padding: 20vh;
+}
+
+// This class hides the text
+.hidden{
+    font-size: 0px;
+    padding: 20px;
+}
+
+

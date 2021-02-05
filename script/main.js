@@ -1,8 +1,12 @@
 function main(){
-    console.log("Started game...")
+
+    console.log("Starting game...")
 
     /**
      * ToDo -> Variablen beschreiben
+     * @var {time left before the game is over} timeLeft 
+     * @var {game points that a player has} points 
+     * @var {rank that the player has} rank 
      */
     var timeLeft = 60;
     var points = 0;
@@ -24,16 +28,19 @@ function main(){
         });
     }
 
-    var rect = new Rectangle(2);
+    // Create new rectangle with size of n
+    var rect = new Rectangle(30);
+
+    // Draw rectangle on canvas with size of rect and at pos of rect
     drawRectAtStart(rect.size, rect.xPos, rect.yPos)
 
-    console.log(rect.size);
-
+    // These two lines are for debugging
+    console.log("Rectangle size: " + rect.size);
     console.log(rect.debug())
 
     // Update every second (1000 ms)
     setInterval(function(){
-        console.log("x= " + rect.getXPos() + " y = " + rect.getYPos());
+        console.log("x= " + rect.xPos + " y = " + rect.yPos);
         rect.updateX();
         timeLeft -= 1;
         $(".timer").text("Time left: " + timeLeft);
@@ -44,11 +51,21 @@ function main(){
 
 }
 
+/**
+ * 
+ */
 function finish(){
     // Code here
     // -> Look at Trello Board "Pop Up Ending"
 }
 
+/**
+ * This method draws a rectangle with the given parameters on the canvas
+ * (It gets the canvas within the method)
+ * @param {size of rectangle} rectSize 
+ * @param {x position of rectangle} rectPosX 
+ * @param {y position of rectangle} rectPosY 
+ */
 function drawRectAtStart(rectSize, rectPosX, rectPosY){
     var size = rectSize;
 
@@ -59,17 +76,37 @@ function drawRectAtStart(rectSize, rectPosX, rectPosY){
     var ctx = c[0].getContext("2d");
     ctx.beginPath();
     ctx.fillRect(x, y, size, size);
+    ctx.translate(-1, -1);
     ctx.stroke();
-    console.log(size);
     return [x, y, ctx];
 }
 
+/**
+ * Changes the opacity when the mouse is hovering over the top data (time left etc)
+ * -> Text is nearly invisible
+ * @param {document/class/id} doc 
+ */
+function highOpacity(doc){
+    doc.style.opacity = 1;
+}
+
+/**
+// Changes the opacity when the mouse is hovering over the top data (time left etc)
+ * -> Text is clearly visible
+ * @param {document/class/id} doc 
+ */
+function lowOpacity(doc){
+    doc.style.opacity = 0.2;
+}
 
 
-/** Optional */
+/** Optional
+ * This was for testing purpose, don't delete it!
+*/
 function getCursorPosition(canvas, event){
     var box = canvas[0].getBoundingClientRect();
     var x = event.clientX - box.left;
     var y = event.clientY - box.top;
     return [x, y];
 }
+
