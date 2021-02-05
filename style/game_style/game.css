@@ -19,3 +19,12 @@ game-box {
   border: 5px solid black;
 }
 /*# sourceMappingURL=game.css.map */
+
+ul{
+  list-style-type: none;
+  padding: 10px;
+  
+}
+li{
+  padding-bottom: 10px;
+}
