@@ -1,15 +1,21 @@
 function main(){
     console.log("Started game...")
 
+    /**
+     * ToDo -> Variablen beschreiben
+     */
     var timeLeft = 60;
     var points = 0;
     var rank = 1;
 
+    /**
+     * ToDo -> Sachen werden gesetzt
+     */
     $(".points").text("Points: " + points);
     $(".timer").text("Time left: " + timeLeft);
     $(".rank").text("Rank: " + rank);
 
-    /** Dieser Abschnitt bis zum Ende des "if" ist zum Testen */
+    /** Dieser Abschnitt, bis zum Ende des "if" statements, ist zum Testen */
     if ($(".game-box")){
         $(".game-box").click(function(e){
             var canvas = document.getElementsByClassName('game-box');
@@ -18,8 +24,10 @@ function main(){
         });
     }
 
-    var rect = new Rectangle(20, 20);
-    drawRectAtStart(rect.xSize, rect.ySize, rect.xPos, rect.yPos)
+    var rect = new Rectangle(2);
+    drawRectAtStart(rect.size, rect.xPos, rect.yPos)
+
+    console.log(rect.size);
 
     console.log(rect.debug())
 
@@ -33,17 +41,16 @@ function main(){
             finish();
         }
     }, 1000);
-}
 
+}
 
 function finish(){
     // Code here
     // -> Look at Trello Board "Pop Up Ending"
 }
 
-function drawRectAtStart(rectSizeX, rectSizeY, rectPosX, rectPosY){
-    var rectX = rectSizeX;
-    var rectY = rectSizeY;
+function drawRectAtStart(rectSize, rectPosX, rectPosY){
+    var size = rectSize;
 
     var x = rectPosX;
     var y = rectPosY;
@@ -51,9 +58,9 @@ function drawRectAtStart(rectSizeX, rectSizeY, rectPosX, rectPosY){
     var c = document.getElementsByClassName("game-box");
     var ctx = c[0].getContext("2d");
     ctx.beginPath();
-    ctx.fillRect(x, y, rectX, rectY);
+    ctx.fillRect(x, y, size, size);
     ctx.stroke();
-    console.log(x, y);
+    console.log(size);
     return [x, y, ctx];
 }
 

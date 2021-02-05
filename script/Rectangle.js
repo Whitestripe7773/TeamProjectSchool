@@ -1,7 +1,6 @@
 class Rectangle{
 
-    xSize;
-    ySize;
+    size;
     xPos;
     yPos;
 
@@ -9,26 +8,10 @@ class Rectangle{
      * xSize = Size in pixels on x-axis
      * ySize = Size in pixels to y-axis
      */
-    constructor(xSize, ySize){
-        this.xSize = xSize;
-        this.ySize = ySize;
+    constructor(rectSize){
+        this.size = rectSize;
         this.xPos = getRandomX();
         this.yPos = getRandomY();
-    }
-
-    /** Getter */
-    getXSize(){
-        return this.x;
-    }
-
-    getYSize(){
-        return this.y
-    }
-    getXPos(){
-        return this.xPos;
-    }
-    getYPos(){
-        return this.yPos;
     }
 
     /** Setter */
@@ -78,19 +61,17 @@ class Rectangle{
     ctx.beginPath();
     ctx.fillRect(this.x, y, rectX, rectY);
     ctx.stroke();
-    ctx.strokeStyle = "#0000ff";
-    ctx.fillStyle = "#009900";
     return [this.x, y, ctx];
     }
 }
 
 
 function getRandomX(){
-    var x = Math.floor(Math.random() * window.innerWidth - 300) - 20;
+    var x = Math.floor(Math.random() * 100);
     return x;
 }
 
 function getRandomY(){
-    var y = Math.floor(Math.random() * window.innerHeight - 300) - 20;
+    var y = Math.floor(Math.random() * 100);
     return y;
 }
