@@ -9,7 +9,14 @@ function main(){
     $(".timer").text("Time left: " + timeLeft);
     $(".rank").text("Rank: " + rank);
 
-    var canvas = document.getElementsByClassName('game-box');
+    /** Dieser Abschnitt bis zum Ende des "if" ist zum Testen */
+    if ($(".game-box")){
+        $(".game-box").click(function(e){
+            var canvas = document.getElementsByClassName('game-box');
+            var position = getCursorPosition(canvas, e);
+            console.log("Cursor position: " + position)
+        });
+    }
 
     var rect = new Rectangle(20, 20);
     drawRectAtStart(rect.xSize, rect.ySize, rect.xPos, rect.yPos)
