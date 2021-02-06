@@ -8,6 +8,7 @@ class Rectangle{
     size;
     xPos;
     yPos;
+    direction;
 
     /** Constructor
      * xSize = Size in pixels on x-axis
@@ -17,6 +18,7 @@ class Rectangle{
         this.size = rectSize;
         this.xPos = getRandomX();
         this.yPos = getRandomY();
+        this.direction = this.getRandomDirection();
     }
 
     /** Setter */
@@ -32,6 +34,9 @@ class Rectangle{
     setYPos(yPos){
         this.yPos = yPos;
     }
+    setDirection(direction){
+        this.direction = direction;
+    }
 
     /** Utilities */
     debug(){
@@ -39,39 +44,99 @@ class Rectangle{
     }
 
     /**
-     * ToDo Updating x-pos -> This has to be rethought first
+     * 0 = right
+     * 1 = up
+     * 2 = left
+     * 3 = down
      */
-    updateX(){
-        var rectX = this.xSize;
-        var rectY = this.ySize;
-    
-        var x = this.x += 1;
-        this.x += 1;
-    
-        var c = document.getElementsByClassName("game-box");
-        var ctx = c[0].getContext("2d");
+    getRandomDirection(){
+        if (this.xPos > 300 & this.xPos < 1000){
+            return 0
+        }
+        else if (this.yPos > 350 & this.yPos < 720){
+            return 1
+        }
+        else if (this.xPos > 500 & this.xPos < 1000){
+            return 2
+        }
+        return 3
+    }
+
+
+    move(canvas){
+        switch(this.direction) {
+            case 0:
+              this.updateXPositive(canvas);
+              break;
+            case 1:
+              this.updateYPositive(canvas);
+              break;
+            case 2:
+              this.updateXNegative(canvas);
+              break;  
+            default:
+              this.updateYNegative(canvas);
+          }
+    }
+
+    /**
+     * Go right
+     */
+    updateXPositive(canvas){
+        var ctx = canvas.getContext("2d");
+
         ctx.beginPath();
-        ctx.fillRect(x, this.y, rectX, rectY);
+        ctx.rect(this.xPos + this.size, this.yPos, this.size, this.size);
+        ctx.fillStyle = "black";
+        ctx.fill();
         ctx.stroke();
-        return [x, this.y, ctx];
+        
+        this.xPos += this.size;
+    }
+
+     /**
+     * Go left
+     */
+    updateXNegative(canvas){
+        var ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.rect(this.xPos + this.size, this.yPos, this.size, this.size);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.stroke();
+        
+        this.xPos -= this.size;
+    }
+
+    /**
+     * Go up
+     */
+    updateYPositive(canvas){
+        var ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.rect(this.xPos, this.yPos + this.size, this.size, this.size);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.stroke();
+        
+        this.yPos -= this.size;
     }
     
     /**
-     * ToDo Updating y-pos -> This has to be rethought first
+     * Go down
      */
-    updateY(){
-    var rectX = this.xSize;
-    var rectY = this.ySize;
+    updateYNegative(canvas){
+        var ctx = canvas.getContext("2d");
 
-    var y = this.y += 1;
-    this.y += 1;
-
-    var c = document.getElementsByClassName("game-box");
-    var ctx = c[0].getContext("2d");
-    ctx.beginPath();
-    ctx.fillRect(this.x, y, rectX, rectY);
-    ctx.stroke();
-    return [this.x, y, ctx];
+        ctx.beginPath();
+        ctx.rect(this.xPos, this.yPos + this.size, this.size, this.size);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.stroke();
+        
+        this.yPos += this.size;
     }
 }
 
@@ -87,7 +152,7 @@ function getRandomInt(max) {
  * This method returns a randomNumber for the x-position of the rectangle
  */
 function getRandomX(){
-    var x = getRandomInt(280) + 20;
+    var x = getRandomInt(1180) + 20;
     return x;
 }
 
@@ -95,6 +160,7 @@ function getRandomX(){
  * This method returns a randomNumber for the y-position of the rectangle
  */
 function getRandomY(){
-    var y = getRandomInt(280) + 20;
+    var y = getRandomInt(700) + 20;
     return y;
 }
+
