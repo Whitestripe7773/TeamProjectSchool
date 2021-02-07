@@ -31,3 +31,7 @@ Version: 0.0.4
 - Fixed bug in player movement
 - New Design for index.html site
 - Fixed small bugs
+
+07.02.2021 - DF
+- New Attribute 'visitedFields' (list) for rectangle
+- Created player class

@@ -9,6 +9,8 @@ class Rectangle{
     xPos;
     yPos;
     direction;
+    color;
+    visitedFields = [];
 
     /** Constructor
      * xSize = Size in pixels on x-axis
@@ -19,6 +21,7 @@ class Rectangle{
         this.xPos = getRandomX();
         this.yPos = getRandomY();
         this.direction = this.getRandomDirection();
+        this.color = "blue";
     }
 
     /** Setter */
@@ -87,7 +90,7 @@ class Rectangle{
 
         ctx.beginPath();
         ctx.rect(this.xPos + this.size, this.yPos, this.size, this.size);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
         
@@ -102,7 +105,7 @@ class Rectangle{
 
         ctx.beginPath();
         ctx.rect(this.xPos - this.size, this.yPos, this.size, this.size);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
         
@@ -117,7 +120,7 @@ class Rectangle{
 
         ctx.beginPath();
         ctx.rect(this.xPos, this.yPos - this.size, this.size, this.size);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
         
@@ -132,11 +135,15 @@ class Rectangle{
 
         ctx.beginPath();
         ctx.rect(this.xPos, this.yPos + this.size, this.size, this.size);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
         
         this.yPos += this.size;
+    }
+
+    addField(field){
+        this.visitedFields.push(field);
     }
 }
 

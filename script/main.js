@@ -1,3 +1,9 @@
+var timeLeft = 60;
+var points = 0;
+var rank = 1;
+var positions = {};
+var players = 1;
+
 function main(){
 
     console.log("Starting game...")
@@ -14,9 +20,7 @@ function main(){
      * @var {game points that a player has} points 
      * @var {rank that the player has} rank 
      */
-    var timeLeft = 60;
-    var points = 0;
-    var rank = 1;
+    
 
     /**
      * Shows points, timer and rank on screen
@@ -41,48 +45,8 @@ function main(){
     // Draws the rect with the pos of the created rect and size of it
     drawRect(myCanvas, rect.xPos, rect.yPos, rect.size, rect.size);
 
-    // These two lines are for debugging
-    console.log("Rectangle size: " + rect.size);
-
-    // Update every second (1000 ms)
-    setInterval(function(){
-        timeLeft -= 1;
-        $(".timer").text("Time left: " + timeLeft);
-        
-        if (timeLeft <= 0){
-            finish();
-        }
-    }, 1000);
-
-    setInterval(function(){
-        console.log("Direction: " + rect.direction);
-    }, 1000);
-
-/*
-    window.addEventListener("keydown", function(event) {
-        if (event.defaultPrevented) {
-          return; // Do nothing if event already handled
-        }
-      
-        switch(event.code) {
-          case "KeyA":
-          case "ArrowLeft":
-            // Handle "turn left"
-            rect.direction = 0;
-            break;
-          case "KeyD":
-          case "ArrowRight":
-            // Handle "turn right"
-            break;
-          case "Enter":
-            startMatch(rect, myCanvas);
-        }
-        // Consume the event so it doesn't get handled twice
-        event.preventDefault();
-      }, true);
-*/
-
-
+    
+    // Player Movement -> This needs to be refactored maybe
     window.addEventListener("keydown", function(event) {
     if (event.defaultPrevented) {
         return; // Do nothing if event already handled
@@ -160,34 +124,42 @@ function main(){
         // Consume the event so it doesn't get handled twice
         event.preventDefault();
     }, true);
-    
 
-    // ToDo This is still bugged
-    setupEvents("data-box");
+    console.log(rect.visitedFields);
+
+}
+
+function fillAll(){
+    // Von x bis max(x in fields)
+    // Von y bis max(y in fields)
+    // Add every pos to visitedFields
+    
 }
 
 
+/**
+ * This method starts the match (player movement and time will start)
+ * @param {Players} rectangle 
+ * @param {Canvas} canvas 
+ */
 function startMatch(rectangle, canvas){
+
+    // Move player ever 100ms
     setInterval(function(){
         rectangle.move(canvas);
-    }, 200);
+        rectangle.addField([rectangle.xPos, rectangle.yPos]);
+    }, 100);
+
+    // Update time every second (1000 ms)
+    setInterval(function(){
+        timeLeft -= 1;
+        $(".timer").text("Time left: " + timeLeft);
+
+        if (timeLeft <= 0){
+            finish();
+        }
+    }, 1000);
 }
-
-
-function setupEvents(className) {
-    var element = document.getElementsByClassName(className);
-    element.onmouseover = function(eventInstance) { // handler
-        // closure makes element object
-        // from outer context usable
-        // by extending its lifetime
-        element.style.opacity = 1;
-        highOpacity(className)
-    } // handler
-} // setupEvents
-
-//...
-setupEvents("next"); // and so on...
-
 
 /**
  * adapted from https://medium.com/@doomgoober/understanding-html-canvas-scaling-and-sizing-c04925d9a830
@@ -233,10 +205,10 @@ function finish(){
  */
 function drawRect(canvas, xPos, yPos, width, height){
     var ctx = canvas.getContext("2d");
-
     ctx.beginPath();
     ctx.rect(xPos, yPos, width, height);
-    ctx.fillStyle = "black";
+    // ToDo -> Get a random color (which has to be different for each player)
+    ctx.fillStyle = "blue";
     ctx.fill();
     ctx.stroke();
 }
@@ -299,27 +271,3 @@ function getObjectFitSize(
       y: (containerHeight - targetHeight) / 2
     };
 }
-
-
-/**
- * This method draws a rectangle with the given parameters on the canvas
- * (It gets the canvas within the method)
- * @param {size of rectangle} rectSize 
- * @param {x position of rectangle} rectPosX 
- * @param {y position of rectangle} rectPosY 
-
-function drawRectAtStart(rectSize, rectPosX, rectPosY){
-    var size = rectSize;
-
-    var x = rectPosX;
-    var y = rectPosY;
-
-    var c = document.getElementsByClassName("game-box");
-    var ctx = c[0].getContext("2d");
-    ctx.beginPath();
-    ctx.fillRect(30, 30, size, size);
-    ctx.translate(-1, -1);
-    ctx.stroke();
-    return [x, y, ctx];
-}
- */
