@@ -5,6 +5,7 @@ function main(){
     const myCanvas = document.getElementById("game-box");
     const originalHeight = myCanvas.height;
     const originalWidth = myCanvas.width;
+    var gameStarted = false;
 
     render(myCanvas, originalHeight, originalWidth);
 
@@ -55,10 +56,9 @@ function main(){
 
     setInterval(function(){
         console.log("Direction: " + rect.direction);
-    }, 100);
+    }, 1000);
 
-
-
+/*
     window.addEventListener("keydown", function(event) {
         if (event.defaultPrevented) {
           return; // Do nothing if event already handled
@@ -80,6 +80,87 @@ function main(){
         // Consume the event so it doesn't get handled twice
         event.preventDefault();
       }, true);
+*/
+
+
+    window.addEventListener("keydown", function(event) {
+    if (event.defaultPrevented) {
+        return; // Do nothing if event already handled
+    }
+    switch(event.code) {
+    // "A" key or arrowLeft from here
+        case "KeyA":
+            if (rect.direction == 0){
+                console.log("A - Direction 1");
+                rect.direction = 1;
+            }
+            else if (rect.direction == 1){
+                console.log("A - Direction 2");
+                rect.direction = 2;
+            }
+            else if (rect.direction == 2){
+                console.log("A - Direction 3");
+                rect.direction = 3;
+            }
+            else{
+                console.log("A - Direction 0");
+                rect.direction = 0;
+            }
+            break;
+        case "ArrowLeft":
+            if (rect.direction == 0){
+                rect.direction = 1;
+            }
+            else if (rect.direction == 1){
+                rect.direction = 2;
+            }
+            else if (rect.direction == 2){
+                rect.direction = 3;
+            }
+            else{
+                rect.direction = 0;
+            }
+            break;
+
+    // "D" key or arrowRight from here   
+        case "KeyD":
+            if (rect.direction == 0){
+                rect.direction = 3;
+            }
+            else if (rect.direction == 3){
+                rect.direction = 2;
+            }
+            else if (rect.direction == 2){
+                rect.direction = 1;
+            }
+            else{
+                rect.direction = 0;
+            }
+            break;
+        case "ArrowRight":
+            if (rect.direction == 0){
+                rect.direction = 3;
+            }
+            else if (rect.direction == 3){
+                rect.direction = 2;
+            }
+            else if (rect.direction == 2){
+                rect.direction = 1;
+            }
+            else{
+                rect.direction = 0;
+            }
+            break;
+        case "Enter":
+            if (gameStarted != true){
+                startMatch(rect, myCanvas);
+                gameStarted = true;
+            }
+        }
+        // Consume the event so it doesn't get handled twice
+        event.preventDefault();
+    }, true);
+    
 
     // ToDo This is still bugged
     setupEvents("data-box");
@@ -89,7 +170,7 @@ function main(){
 function startMatch(rectangle, canvas){
     setInterval(function(){
         rectangle.move(canvas);
-    }, 100);
+    }, 200);
 }
 
 
@@ -166,7 +247,7 @@ function drawRect(canvas, xPos, yPos, width, height){
  * @param {document or class/id} doc 
  */
 function highOpacity(doc){
-    doc.style.opacity = 1;
+    doc.style.opacity = 0.99;
 }
 
 /**

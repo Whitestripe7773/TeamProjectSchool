@@ -101,7 +101,7 @@ class Rectangle{
         var ctx = canvas.getContext("2d");
 
         ctx.beginPath();
-        ctx.rect(this.xPos + this.size, this.yPos, this.size, this.size);
+        ctx.rect(this.xPos - this.size, this.yPos, this.size, this.size);
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.stroke();
@@ -116,7 +116,7 @@ class Rectangle{
         var ctx = canvas.getContext("2d");
 
         ctx.beginPath();
-        ctx.rect(this.xPos, this.yPos + this.size, this.size, this.size);
+        ctx.rect(this.xPos, this.yPos - this.size, this.size, this.size);
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.stroke();

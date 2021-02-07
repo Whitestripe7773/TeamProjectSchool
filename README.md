@@ -26,3 +26,8 @@ Version: 0.0.4
 - New bug: double click zooms into the canvas (Fix in later version)
 - New bug: data-box doesnt increase the opacity when the mouse hovers in (Fix in later version)
 - Add version number in this push (README.md)
+
+07.02.2021 - DF
+- Fixed bug in player movement
+- New Design for index.html site
+- Fixed small bugs
