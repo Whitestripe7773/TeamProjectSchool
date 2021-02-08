@@ -120,7 +120,30 @@ function main(){
                 startMatch(rect, myCanvas);
                 gameStarted = true;
             }
+            break;
+        case "Tab":
+            console.log("TEST");
+            Playerlist.showScoreboard();
+            break;
         }
+
+        // Consume the event so it doesn't get handled twice
+        event.preventDefault();
+    }, true);
+
+
+    window.addEventListener("keyup", function(event) {
+        if (event.defaultPrevented) {
+            return; // Do nothing if event already handled
+        }
+
+        switch(event.code) {
+            case "Tab":
+            console.log("TEST");
+            Playerlist.showScoreboard();
+            break;
+        }
+
         // Consume the event so it doesn't get handled twice
         event.preventDefault();
     }, true);

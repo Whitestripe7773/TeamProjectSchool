@@ -37,7 +37,7 @@ html, body {
   position: relative;
 }
 
-#scoreboard .hidden {
+.hidden {
   font-size: 0px;
 }
 /*# sourceMappingURL=game.css.map */

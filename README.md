@@ -38,3 +38,7 @@ Version: 0.0.5
 
 08.02.2021 - DF
 - Hide scoreboard
+
+08.02.2021 - JZ
+- Playerlist method: showScoreboard
+- Implemented into main function
