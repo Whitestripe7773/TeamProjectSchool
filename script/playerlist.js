@@ -1,19 +1,19 @@
-// Add variables which needs to be used here: like points, rank etc.
-//const div =  document.querySelector('div');
-    //div.classList.remove('info');
+//Headings of scoreboard
 const HEADINGS =  document.getElementsByClassName('hidden');
+
 class Playerlist{
-    //HEADINGS =  document.getElementsByClassName('hidden');
 
-
+    //values will be displayed on scoreboard
     nicknames = [];
     ranks = [];
     points_per_player = [];
-    static isShown = false;
 
     static showScoreboard() {
         var arr = Array.prototype.slice.call(HEADINGS)
-
+        arr.forEach(heading => {
+            heading.style.fontSize = 'x-large';
+        });
+        /*
         if (this.isShown){
             arr.forEach(heading => {
                 heading.style.fontSize = '0px';
@@ -26,9 +26,18 @@ class Playerlist{
             });
             this.isShown = true;
         }
+        */
+    }
+    
+    static hideScoreboard(){
+        var arr = Array.prototype.slice.call(HEADINGS)
+        arr.forEach(heading => {
+            heading.style.fontSize = '0px';
+        });
     }
 
     updateList(nicknames, ranks, points_per_player) {
+        // will be implemented soon
         return 0;
     }
 }

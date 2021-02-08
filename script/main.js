@@ -122,7 +122,6 @@ function main(){
             }
             break;
         case "Tab":
-            console.log("TEST");
             Playerlist.showScoreboard();
             break;
         }
@@ -139,8 +138,7 @@ function main(){
 
         switch(event.code) {
             case "Tab":
-            console.log("TEST");
-            Playerlist.showScoreboard();
+            Playerlist.hideScoreboard();
             break;
         }
 

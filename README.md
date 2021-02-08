@@ -42,3 +42,6 @@ Version: 0.0.5
 08.02.2021 - JZ
 - Playerlist method: showScoreboard
 - Implemented into main function
+
+08.02.2021 - JZ
+- fixed a bug which occured when displaying the scoreboard
