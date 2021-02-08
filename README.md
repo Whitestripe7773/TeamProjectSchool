@@ -1,4 +1,4 @@
-Version: 0.0.4
+Version: 0.0.5
 
 04.02.2021 - DF
 - First commit
@@ -35,3 +35,6 @@ Version: 0.0.4
 07.02.2021 - DF
 - New Attribute 'visitedFields' (list) for rectangle
 - Created player class
+
+08.02.2021 - DF
+- Hide scoreboard
