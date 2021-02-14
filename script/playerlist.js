@@ -38,8 +38,8 @@ class Playerlist{
         });
     }
 
-    updateList(nicknames, ranks, points_per_player) {
-        // will be implemented soon
+    // players is a list of all players in the game
+    updateList(players) {
         return 0;
     }
 }
