@@ -40,9 +40,9 @@ html, body{
 
 // This class hides the text
 .hidden{
-    //display: none;      --> IMPORTANT: use these two attributes instead of "font-size: 0px;" !!!
-    //visibility: hidden; --> TODO: change
-    font-size: 0px;
+    visibility: hidden; 
+    background-color: lightgrey;
+    //font-size: 0px;
 }
 
 

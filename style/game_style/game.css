@@ -38,6 +38,7 @@ html, body {
 }
 
 .hidden {
-  font-size: 0px;
+  visibility: hidden;
+  background-color: lightgrey;
 }
 /*# sourceMappingURL=game.css.map */

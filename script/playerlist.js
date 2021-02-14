@@ -11,7 +11,8 @@ class Playerlist{
     static showScoreboard() {
         var arr = Array.prototype.slice.call(HEADINGS)
         arr.forEach(heading => {
-            heading.style.fontSize = 'x-large';
+            //heading.style.fontSize = 'x-large';
+            heading.style.visibility = 'visible';
         });
         /*
         if (this.isShown){
@@ -32,7 +33,8 @@ class Playerlist{
     static hideScoreboard(){
         var arr = Array.prototype.slice.call(HEADINGS)
         arr.forEach(heading => {
-            heading.style.fontSize = '0px';
+            //heading.style.fontSize = '0px';
+            heading.style.visibility = 'hidden';
         });
     }
 
