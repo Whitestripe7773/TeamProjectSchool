@@ -1,6 +1,6 @@
 class Player extends Rectangle{
 
-    static points_name = [[]]; // 2D List storing the following information of every player: [ [points, name], [points, name],... ]
+    static name_points = [[]]; // 2D List storing the following information of every player: [ [name, points], [name, points],... ]
     nickname;
     colour;
     rectangle;
@@ -17,13 +17,20 @@ class Player extends Rectangle{
     calculatePoints(){
     }
 
-    calclulateRank(){
-        points_name.sort
+    calclulateRank(name_points){
+        //sorts the list of players: The player with the least points has the first entry.
+        name_points.sort(function(a, b){
+            return a[1] - b[1];
+        });
 
-        name_points.array.forEach(player => {
-            if (this.nickname == player){
-                this.rank = player[1];
+        rank_counter = name_points.length; // in the beginning: last rank
+
+        name_points.forEach(player_data => {
+            if (this.nickname == player_data[1]){
+                this.rank = rank_counter;
+                return 0; // this should stop the function 
             }
+            rank_counter -= 1;
         });
     }
 

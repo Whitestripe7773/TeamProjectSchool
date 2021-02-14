@@ -47,4 +47,7 @@ Version: 0.0.5
 - fixed a bug which occured when displaying the scoreboard
 
 12.02.2021 - JZ
-- started to create player class
+- started to create Player class
+
+12.02.2021 -JZ
+- implemented calculateRank() in Player
