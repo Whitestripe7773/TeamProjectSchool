@@ -1,0 +1,27 @@
+{
+  "name": "teamprojectschool",
+  "version": "0.0.5",
+  "description": "Multiplayer game project for school",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Whitestripe7773/TeamProjectSchool.git"
+  },
+  "keywords": [
+    "multiplayer"
+  ],
+  "author": "Whitestripe7773",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Whitestripe7773/TeamProjectSchool/issues"
+  },
+  "homepage": "https://github.com/Whitestripe7773/TeamProjectSchool#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.1.1",
+    "socket.io-client": "^3.1.1"
+  }
+}
