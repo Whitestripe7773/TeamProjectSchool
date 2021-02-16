@@ -47,7 +47,9 @@ Version: 0.0.5
 - fixed a bug which occured when displaying the scoreboard
 
 12.02.2021 - JZ
-- started to create Player class
+- started to create player class
+- implemented calculateRank() in Player.js
 
-12.02.2021 -JZ
-- implemented calculateRank() in Player
+16.02.2021 - DF
+- Created server.js
+- Test script for node
