@@ -5,6 +5,7 @@ html, body {
   height: 100%;
   -ms-touch-action: manipulation;
       touch-action: manipulation;
+  overflow-x: hidden;
 }
 
 .textcenter {
@@ -12,7 +13,6 @@ html, body {
 }
 
 .game-box {
-  padding: 1%;
   margin: 1%;
   position: absolute;
   /* absolute */

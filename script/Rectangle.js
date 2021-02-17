@@ -1,9 +1,12 @@
 class Rectangle{
 
     /**
-     * @var {size of rectangle} Size
-     * @var {position on the x-axis of the rect} xPos
-     * @var {position on the y-axis of the rect} yPos
+     * @var {Size of rectangle} Size
+     * @var {Position on the x-axis of the rect} xPos
+     * @var {Position on the y-axis of the rect} yPos
+     * @var {Direction that the rectangle moves to} direction
+     * @var {Color of the rectangle} color
+     * @var {2D List of visited fields [[x, y]])} visitedFields
      */
     size;
     xPos;
@@ -24,7 +27,7 @@ class Rectangle{
         this.color = "blue";
     }
 
-    /** Setter */
+    /* Setter */
     setXSize(x){
         this.x = x;
     }
@@ -41,12 +44,18 @@ class Rectangle{
         this.direction = direction;
     }
 
-    /** Utilities */
+    /* Utilities */
+
+    /**
+     * This methods is just for debug purpose
+     */
     debug(){
-        return "Debug works!"
+        console.log(`X-Pos: ${this.xPos} \n Y-Pos: ${this.yPos}`)
     }
 
     /**
+     * Generate a random start direction, depending on the distance to the sides
+     * Direction:
      * 0 = right
      * 1 = up
      * 2 = left
@@ -65,7 +74,10 @@ class Rectangle{
         return 3
     }
 
-
+    /**
+     * With this function the rectangle moves on the canvas, depending on the direction
+     * @param {Canvas that we draw on} canvas 
+     */
     move(canvas){
         switch(this.direction) {
             case 0:
@@ -84,6 +96,8 @@ class Rectangle{
 
     /**
      * Go right
+     * We are updating the x-Position (+) on the canvas
+     * @param {Canvas that we draw on} canvas
      */
     updateXPositive(canvas){
         var ctx = canvas.getContext("2d");
@@ -99,6 +113,8 @@ class Rectangle{
 
      /**
      * Go left
+     * We are updating the x-Position (-) on the canvas
+     * @param {Canvas that we draw on} canvas
      */
     updateXNegative(canvas){
         var ctx = canvas.getContext("2d");
@@ -114,6 +130,8 @@ class Rectangle{
 
     /**
      * Go up
+     * We are updating the y-Position (-) on the canvas
+     * @param {Canvas that we draw on} canvas
      */
     updateYPositive(canvas){
         var ctx = canvas.getContext("2d");
@@ -129,6 +147,8 @@ class Rectangle{
     
     /**
      * Go down
+     * We are updating the y-Position (+) on the canvas -> Start from top (0)
+     * @param {Canvas that we draw on} canvas
      */
     updateYNegative(canvas){
         var ctx = canvas.getContext("2d");
@@ -159,7 +179,7 @@ function getRandomInt(max) {
  * This method returns a randomNumber for the x-position of the rectangle
  */
 function getRandomX(){
-    var x = getRandomInt(1180) + 20;
+    var x = Math.ceil((getRandomInt(1180) + 20 ) / 10) * 10;
     return x;
 }
 
@@ -167,7 +187,7 @@ function getRandomX(){
  * This method returns a randomNumber for the y-position of the rectangle
  */
 function getRandomY(){
-    var y = getRandomInt(700) + 20;
+    var y = Math.ceil((getRandomInt(700) + 20) / 10) * 10;
     return y;
 }
 

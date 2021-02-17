@@ -4,12 +4,18 @@ var rank = 1;
 var positions = {};
 var players = 1;
 
-const socket = io();
+//const socket = io();
 
 function main(){
 
     console.log("Starting game...")
 
+    /**
+     * @var {Get the canvas from the HTML} myCanvas
+     * @var {Gets the height of the canvas} originalHeight
+     * @var {Gets the width of the canvas} originalWidth
+     * @var {If true the timer starts and player will move} gameStarted
+     */
     const myCanvas = document.getElementById("game-box");
     const originalHeight = myCanvas.height;
     const originalWidth = myCanvas.width;
@@ -43,22 +49,20 @@ function main(){
     // Create new rectangle with size of n
     var rect = new Player("Janniman1939", "black");
     console.log("Start direction: " + rect.direction);
+    rect.debug();
     
     // Draws the rect with the pos of the created rect and size of it
     drawRect(myCanvas, rect.xPos, rect.yPos, rect.size, rect.size);
-    fillAll(myCanvas, rect);
-
-
-    console.log("XPOS: " + rect.xPos + " YPOS: " + rect.yPos);
+    //fillAll(myCanvas, rect);
 
     
     // Player Movement -> This needs to be refactored maybe
+    // Listens to the keys
     window.addEventListener("keydown", function(event) {
-    if (event.defaultPrevented) {
-        return; // Do nothing if event already handled
-    }
+
     switch(event.code) {
-    // "A" key or arrowLeft from here
+    /* "A" key or arrowLeft from here */
+    // When "A" key is pressed
         case "KeyA":
             if (rect.direction == 0){
                 console.log("A - Direction 1");
@@ -77,6 +81,7 @@ function main(){
                 rect.direction = 0;
             }
             break;
+    // When left key is pressed
         case "ArrowLeft":
             if (rect.direction == 0){
                 rect.direction = 1;
@@ -92,7 +97,8 @@ function main(){
             }
             break;
 
-    // "D" key or arrowRight from here   
+    /* "D" key or arrowRight from here */
+    // When "D" key is pressed
         case "KeyD":
             if (rect.direction == 0){
                 rect.direction = 3;
@@ -107,6 +113,7 @@ function main(){
                 rect.direction = 0;
             }
             break;
+    // When right key is pressed
         case "ArrowRight":
             if (rect.direction == 0){
                 rect.direction = 3;
@@ -121,19 +128,18 @@ function main(){
                 rect.direction = 0;
             }
             break;
+    // When "Enter" is pressed the game starts
         case "Enter":
             if (gameStarted != true){
                 startMatch(rect, myCanvas);
                 gameStarted = true;
             }
             break;
+    // When "Tab" key is pressed
         case "Tab":
             Playerlist.showScoreboard();
             break;
         }
-
-        // Consume the event so it doesn't get handled twice
-        event.preventDefault();
     }, true);
 
 
@@ -174,6 +180,7 @@ function fillAll(canvas, rect){
  */
 function startMatch(rectangle, canvas){
 
+
     // Move player ever 100ms
     setInterval(function(){
         rectangle.move(canvas);
@@ -185,6 +192,7 @@ function startMatch(rectangle, canvas){
         timeLeft -= 1;
         $(".timer").text("Time left: " + timeLeft);
 
+        // When time hits 0 -> finish method is invoked
         if (timeLeft <= 0){
             finish();
         }
@@ -222,7 +230,7 @@ function render(myCanvas, originalHeight, originalWidth) {
 }
 
 /**
- * 
+ * This method will be activated after 60 seconds passed
  */
 function finish(){
     // Code here
@@ -245,7 +253,7 @@ function drawRect(canvas, xPos, yPos, width, height){
 
 /**
  * Changes the opacity when the mouse is hovering over the top data (time left etc)
- * -> Text is nearly invisible
+ * -> Text will be nearly invisible
  * @param {document or class/id} doc 
  */
 function highOpacity(doc){
@@ -254,7 +262,7 @@ function highOpacity(doc){
 
 /**
 // Changes the opacity when the mouse is hovering over the top data (time left etc)
- * -> Text is clearly visible
+ * -> Text will be clearly visible
  * @param {document or class/id} doc 
  */
 function lowOpacity(doc){
@@ -263,6 +271,7 @@ function lowOpacity(doc){
 
 /** Optional
  * This was for testing purpose, don't delete it!
+ * Logs the cursor position (x,y) when clicking somewhere in the canvas
 */
 function getCursorPosition(canvas, event){
     var box = canvas[0].getBoundingClientRect();

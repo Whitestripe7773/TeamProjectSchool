@@ -11,7 +11,6 @@ class Player extends Rectangle{
         super(10);
         this.nickname = nickname;
         this.colour = colour;
-        this.rectangle = rectangle;
     }
 
     calculatePoints(){

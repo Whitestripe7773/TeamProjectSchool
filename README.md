@@ -57,3 +57,9 @@ Version: 0.0.5
 17.02.2021 - JZ
 - Created colorpicker in index.html 
 - TODO: implement color in Rectangle Class
+
+18.02.2021 - DF
+- Player starts at a multiple of 10 on x and y axis
+- Code refactoring
+- Added comments
+- Better debug method for rectangle class

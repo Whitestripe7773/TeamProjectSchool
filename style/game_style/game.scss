@@ -4,6 +4,7 @@ html, body{
     width: 100%;
     height: 100%;
     touch-action: manipulation;
+    overflow-x: hidden;
 }
 
 // Centers the text
@@ -13,7 +14,6 @@ html, body{
 
 // In this box the whole game will be run
 .game-box{
-    padding: 1%;
     margin: 1%;
     position: absolute; /* absolute */
     width: 97%;    /* 97% */
