@@ -53,3 +53,7 @@ Version: 0.0.5
 16.02.2021 - DF
 - Created server.js
 - Test script for node
+
+17.02.2021 - JZ
+- Created colorpicker in index.html 
+- TODO: implement color in Rectangle Class
