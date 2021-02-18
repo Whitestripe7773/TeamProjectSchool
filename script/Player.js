@@ -27,7 +27,7 @@ class Player extends Rectangle{
         name_points.forEach(player_data => {
             if (this.nickname == player_data[1]){
                 this.rank = rank_counter;
-                return 0; // this should stop the function 
+                return; // this should stop the function 
             }
             rank_counter -= 1;
         });

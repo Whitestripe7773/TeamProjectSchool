@@ -39,7 +39,11 @@ class Playerlist{
     }
 
     // players is a list of all players in the game
+    // with jQuerry 
+    // aktualisierung bei Tab druck oder mit setInterval()
+    // TODO: implementing players[] in app.js 
     updateList(players) {
+
         return 0;
     }
 }
