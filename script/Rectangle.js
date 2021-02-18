@@ -96,6 +96,7 @@ class Rectangle{
 
     /**
      * Go right
+     * Draws new rectangle to the right side of the "old" one
      * We are updating the x-Position (+) on the canvas
      * @param {Canvas that we draw on} canvas
      */
@@ -113,6 +114,7 @@ class Rectangle{
 
      /**
      * Go left
+     * Draws new rectangle to the left side of the "old" one
      * We are updating the x-Position (-) on the canvas
      * @param {Canvas that we draw on} canvas
      */
@@ -130,6 +132,7 @@ class Rectangle{
 
     /**
      * Go up
+     * Draws new rectangle on top of the "old" one
      * We are updating the y-Position (-) on the canvas
      * @param {Canvas that we draw on} canvas
      */
@@ -147,6 +150,7 @@ class Rectangle{
     
     /**
      * Go down
+     * Draws new rectangle below the "old" one
      * We are updating the y-Position (+) on the canvas -> Start from top (0)
      * @param {Canvas that we draw on} canvas
      */
@@ -177,6 +181,7 @@ function getRandomInt(max) {
 
 /**
  * This method returns a randomNumber for the x-position of the rectangle
+ * Multiple of 10
  */
 function getRandomX(){
     var x = Math.ceil((getRandomInt(1180) + 20 ) / 10) * 10;
@@ -185,6 +190,7 @@ function getRandomX(){
 
 /**
  * This method returns a randomNumber for the y-position of the rectangle
+ * Multiple of 10
  */
 function getRandomY(){
     var y = Math.ceil((getRandomInt(700) + 20) / 10) * 10;

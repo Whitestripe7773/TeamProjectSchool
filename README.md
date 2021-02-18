@@ -63,3 +63,8 @@ Version: 0.0.5
 - Code refactoring
 - Added comments
 - Better debug method for rectangle class
+
+18.02.2021 - JZ
+- Code refactoring 
+- Comments added 
+- Bug Fixing 

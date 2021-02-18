@@ -1,3 +1,10 @@
+/**
+ * @var {time left before the game is over} timeLeft 
+ * @var {game points that a player has} points 
+ * @var {rank that the player has} rank 
+ * @var {coordinates of start pos for each player} position
+ * @var {count of players ingame} players
+ */
 var timeLeft = 60;
 var points = 0;
 var rank = 1;
@@ -19,15 +26,13 @@ function main(){
     const myCanvas = document.getElementById("game-box");
     const originalHeight = myCanvas.height;
     const originalWidth = myCanvas.width;
-    var gameStarted = false;
-
-    render(myCanvas, originalHeight, originalWidth);
 
     /**
-     * @var {time left before the game is over} timeLeft 
-     * @var {game points that a player has} points 
-     * @var {rank that the player has} rank 
+     * @var {boolean to show if the game has started} gameStarted
      */
+    var gameStarted = false; 
+
+    render(myCanvas, originalHeight, originalWidth);
     
 
     /**
@@ -47,12 +52,13 @@ function main(){
     }
 
     // Create new rectangle with size of n
+    // TODO: get color from color picker (index.html)
     var rect = new Player("Janniman1939", "black");
     console.log("Start direction: " + rect.direction);
     rect.debug();
     
     // Draws the rect with the pos of the created rect and size of it
-    drawRect(myCanvas, rect.xPos, rect.yPos, rect.size, rect.size);
+    drawRect(myCanvas, rect);
     //fillAll(myCanvas, rect);
 
     
@@ -65,19 +71,15 @@ function main(){
     // When "A" key is pressed
         case "KeyA":
             if (rect.direction == 0){
-                console.log("A - Direction 1");
                 rect.direction = 1;
             }
             else if (rect.direction == 1){
-                console.log("A - Direction 2");
                 rect.direction = 2;
             }
             else if (rect.direction == 2){
-                console.log("A - Direction 3");
                 rect.direction = 3;
             }
             else{
-                console.log("A - Direction 0");
                 rect.direction = 0;
             }
             break;
@@ -238,13 +240,14 @@ function finish(){
 }
 
 /**
- * Draws a rectangle
+ * Draws a rectangle for the first time 
+ * TODO: rethink implementation with regards to color issue and parameters
  * @param {Context of the canvas obj} ctx 
  */
-function drawRect(canvas, xPos, yPos, width, height){
+function drawRect(canvas, player){
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
-    ctx.rect(xPos, yPos, width, height);
+    ctx.rect(player.xPos, player.yPos, player.size, player.size);
     // ToDo -> Get a random color (which has to be different for each player)
     ctx.fillStyle = "blue";
     ctx.fill();
@@ -280,7 +283,7 @@ function getCursorPosition(canvas, event){
     return [x, y];
 }
 
-// Fits the object size to the canvas
+// Fits the object size to the canvas (rectangles won't be pixelated)
 // adapted from: https://www.npmjs.com/package/intrinsic-scale
 function getObjectFitSize(
     contains /* true = contain, false = cover */,

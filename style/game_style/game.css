@@ -16,7 +16,7 @@ html, body {
   margin: 1%;
   position: absolute;
   /* absolute */
-  width: 97%;
+  width: 98%;
   /* 97% */
   height: 97%;
   /* 97% */
@@ -32,7 +32,6 @@ html, body {
 
 #scoreboard {
   margin-top: 10px;
-  padding: 20vh;
   padding: 20px;
   position: relative;
 }
