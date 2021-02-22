@@ -95,6 +95,22 @@ class Rectangle{
     }
 
     /**
+     * This method updates the position depending on the direction
+     * @param {*} canvas 
+     */
+    updatePos(canvas){
+        var ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.rect(this.xPos + this.size, this.yPos, this.size, this.size);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.stroke();
+        
+        this.xPos += this.size;
+    }
+
+    /**
      * Go right
      * Draws new rectangle to the right side of the "old" one
      * We are updating the x-Position (+) on the canvas
