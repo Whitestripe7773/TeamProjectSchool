@@ -76,3 +76,8 @@ Version: 0.0.5
 27.02.2021 - DF
 - fillAll method is ready but still bugged
 - Player won't move anymore when he hits a wall
+
+27.02.2021 --> agreed on gameplay change: game should work like Paper IO 
+
+27.02.2021 -JZ
+- implemented "starting field" of the player (field will be generated in drawRect())

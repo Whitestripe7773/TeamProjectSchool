@@ -192,12 +192,15 @@ function fillAll(canvas, rect){
             If the x-value of element[i+1] (e.g. [20,0]) is > the x-value of element [i] + 10 (e.g. [0,0] -> [10,0]) AND both y-values are the same:
                 Put the element into the array called "inField"
     */
+    
+
     for(let i = 0; i < vFields.length - 1; i++){
-        console.log("Iteration: " + i + " vFields[i+1][0] = " + vFields[i+1][0]);;
-        console.log("Iteration: " + i + " vFields[i][0] + 10 = " + (vFields[i][0] + 10));
-        console.log("Iteration: " + i + " vFields[i+1][1] = " + vFields[i+1][1]);
-        console.log("Iteration: " + i + " vFields[i][1] = " + vFields[i][1]);
+        //console.log("Iteration: " + i + " vFields[i+1][0] = " + vFields[i+1][0]);;
+        //console.log("Iteration: " + i + " vFields[i][0] + 10 = " + (vFields[i][0] + 10));
+        //console.log("Iteration: " + i + " vFields[i+1][1] = " + vFields[i+1][1]);
+        //console.log("Iteration: " + i + " vFields[i][1] = " + vFields[i][1]);
         if (vFields[i+1][0] > vFields[i][0] + 10 && vFields[i+1][1] == vFields[i][1]){
+            if (vFields)
             inField.push([vFields[i][0] + 10, vFields[i+1][1]])
         }
     }
@@ -360,13 +363,28 @@ function finish(){
 
 /**
  * Draws a rectangle for the first time 
+ * Also draws the starting field of the player
  * TODO: rethink implementation with regards to color issue and parameters
  * @param {Context of the canvas obj} ctx 
  */
 function drawRect(canvas, player){
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
+
+    //initial Position of Player
     ctx.rect(player.xPos, player.yPos, player.size, player.size);
+
+    //how big should the "starting field" be? "1" means 1 block layer surrounding the player's initial position
+    borderLayers = 1
+
+    //drawing the starting field of the player (around the player himself)
+    //for loop iterates through points on y Axis
+    for (let i = player.yPos-player.size*borderLayers; i<=player.yPos+player.size*borderLayers; i+=player.size){
+        //2nd for loop iterates through x Axis
+        for (let j = player.xPos-player.size*borderLayers; j<=player.xPos+player.size*borderLayers; j+=player.size){
+            ctx.rect(j,i,player.size,player.size);
+        }
+    }
     // ToDo -> Get a random color (which has to be different for each player)
     ctx.fillStyle = "blue";
     ctx.fill();
