@@ -160,19 +160,113 @@ function main(){
         event.preventDefault();
     }, true);
 
-    console.log(rect.visitedFields);
-
 }
 
-function fillAll(canvas, rect){
+
+function fillAll(rect){
     // Von x bis max(x in fields)
     // Von y bis max(y in fields)
     // Add every pos to visitedFields
-    let visitedFields = rect.visitedFields
-    if (visitedFields.includes([rect.xPos, rect.yPos])){
-        drawRect(canvas, rect.visitedFields[0][0] + 10, rect.visitedFields[0][1] + 20, rect.size, rect.size)
+
+    //let minX = getMinX(rect);
+    //let maxX = getMaxX(rect);
+
+    //let minY = getMinY(rect);
+    //let maxY = getMaxY(rect);
+
+    // Starts time to track
+    console.time("fillAll");
+
+    let inField = []
+    let result = []
+    let vFields = rect.visitedFields;
+    console.log(vFields);
+
+    vFields.sort(sortByX);
+    vFields.sort(sortByY);
+    
+    console.log({vFields})
+
+    /*  For i to len(visitedFields):
+            If the x-value of element[i+1] (e.g. [20,0]) is > the x-value of element [i] + 10 (e.g. [0,0] -> [10,0]) AND both y-values are the same:
+                Put the element into the array called "inField"
+    */
+    for(let i = 0; i <= vFields.length - 1; i++){
+        if (vFields[i+1][0] > vFields[i][0] + 10 && vFields[i+1][1] == vFields[i][1]){
+            inField.push([vFields[i][0], vFields[i][0] + 10, vFields[i+1][0]])
+        }
+    }
+
+    /*
+    for (let j = 0; j < inField.length; j++){
+        if (inField[j][0] in vFields){
+            inField = inField.filter(item => item != element);
+        }
+    }
+    */
+
+    console.timeEnd("fillAll");
+    console.log(inField);
+}
+
+function sortByX(a, b) {
+    if (a[0] === b[0]) {
+        return 0;
+    }
+    else {
+        return (a[0] < b[0]) ? -1 : 1;
     }
 }
+
+function sortByY(a, b) {
+    if (a[1] === b[1]) {
+        return 0;
+    }
+    else {
+        return (a[1] < b[1]) ? -1 : 1;
+    }
+}
+
+function getMinX(rect){
+    let minX = rect.visitedFields[0][0];
+    for (let element in rect.visitedFields){
+        if (element[0] < minX) {
+            minX = element[0]
+        } 
+    }
+    return minX
+}
+
+function getMinY(rect){
+    let minY =  rect.visitedFields[0][1];
+    for (let element in rect.visitedFields){
+        if (element[1] < minY) {
+            maxY = element[1]
+        } 
+    }
+    return minY
+}
+
+function getMaxX(rect){
+    let maxX = rect.visitedFields[0][0];
+    for (let element in rect.visitedFields){
+        if (element[0] > maxX) {
+            maxX = element[0]
+        } 
+    }
+    return maxX
+}
+
+function getMaxY(rect){
+    let maxY = rect.visitedFields[0][0];
+    for (let element in rect.visitedFields){
+        if (element[1] > maxY) {
+            maxY = element[1]
+        } 
+    }
+    return maxY
+}
+
 
 
 /**
@@ -186,8 +280,15 @@ function startMatch(rectangle, canvas){
     // Move player ever 100ms
     setInterval(function(){
         rectangle.move(canvas);
-        rectangle.addField([rectangle.xPos, rectangle.yPos]);
-    }, 100);
+        debugger;
+        let currentPos = [rectangle.xPos, rectangle.yPos]
+        for(let i = 0; i < rectangle.visitedFields.length; i++){
+            if (rectangle.visitedFields[i][0] == currentPos[0] && rectangle.visitedFields[i][1] == currentPos[1]){
+                fillAll(rectangle);
+            }
+        }
+        rectangle.addField(currentPos);
+    }, 150);
 
     // Update time every second (1000 ms)
     setInterval(function(){
@@ -252,6 +353,7 @@ function drawRect(canvas, player){
     ctx.fillStyle = "blue";
     ctx.fill();
     ctx.stroke();
+    player.addField([player.xPos, player.yPos]);
 }
 
 /**

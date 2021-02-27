@@ -68,3 +68,7 @@ Version: 0.0.5
 - Code refactoring 
 - Comments added 
 - Bug Fixing 
+
+27.02.2021 - DF
+- First attempt of fillAll method
+- It is not working right now
