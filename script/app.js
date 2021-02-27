@@ -163,7 +163,7 @@ function main(){
 }
 
 
-function fillAll(rect){
+function fillAll(canvas, rect){
     // Von x bis max(x in fields)
     // Von y bis max(y in fields)
     // Add every pos to visitedFields
@@ -185,15 +185,20 @@ function fillAll(rect){
     vFields.sort(sortByX);
     vFields.sort(sortByY);
     
-    console.log({vFields})
+    debugger;
+    console.log({vFields});
 
     /*  For i to len(visitedFields):
             If the x-value of element[i+1] (e.g. [20,0]) is > the x-value of element [i] + 10 (e.g. [0,0] -> [10,0]) AND both y-values are the same:
                 Put the element into the array called "inField"
     */
-    for(let i = 0; i <= vFields.length - 1; i++){
+    for(let i = 0; i < vFields.length - 1; i++){
+        console.log("Iteration: " + i + " vFields[i+1][0] = " + vFields[i+1][0]);;
+        console.log("Iteration: " + i + " vFields[i][0] + 10 = " + (vFields[i][0] + 10));
+        console.log("Iteration: " + i + " vFields[i+1][1] = " + vFields[i+1][1]);
+        console.log("Iteration: " + i + " vFields[i][1] = " + vFields[i][1]);
         if (vFields[i+1][0] > vFields[i][0] + 10 && vFields[i+1][1] == vFields[i][1]){
-            inField.push([vFields[i][0], vFields[i][0] + 10, vFields[i+1][0]])
+            inField.push([vFields[i][0] + 10, vFields[i+1][1]])
         }
     }
 
@@ -205,8 +210,13 @@ function fillAll(rect){
     }
     */
 
+    console.log({vFields ,inField});
+
+    for (let j = 0; j < inField.length; j++){
+        drawRectAtPos(canvas, rect, inField[j][0], inField[j][1]);
+    }
+
     console.timeEnd("fillAll");
-    console.log(inField);
 }
 
 function sortByX(a, b) {
@@ -278,17 +288,25 @@ function startMatch(rectangle, canvas){
 
 
     // Move player ever 100ms
-    setInterval(function(){
-        rectangle.move(canvas);
-        debugger;
+    let play = setInterval(function(){
         let currentPos = [rectangle.xPos, rectangle.yPos]
-        for(let i = 0; i < rectangle.visitedFields.length; i++){
-            if (rectangle.visitedFields[i][0] == currentPos[0] && rectangle.visitedFields[i][1] == currentPos[1]){
-                fillAll(rectangle);
+        if (currentPos[0] < 1200 && currentPos[0] > -10 && currentPos[1] < 720 && currentPos[1] > -10)
+        {
+            rectangle.move(canvas);
+            //debugger;
+            currentPos = [rectangle.xPos, rectangle.yPos]
+            for(let i = 0; i < rectangle.visitedFields.length - 1; i++){
+                if (rectangle.visitedFields[i][0] == currentPos[0] && rectangle.visitedFields[i][1] == currentPos[1]){
+                    fillAll(canvas, rectangle);
+                }
             }
+            rectangle.addField(currentPos);
         }
-        rectangle.addField(currentPos);
-    }, 150);
+        else{
+            console.log("Du bist tot.");
+            clearInterval(play);
+        }
+    }, 100);
 
     // Update time every second (1000 ms)
     setInterval(function(){
@@ -354,6 +372,17 @@ function drawRect(canvas, player){
     ctx.fill();
     ctx.stroke();
     player.addField([player.xPos, player.yPos]);
+}
+
+function drawRectAtPos(canvas, player, xPos, yPos){
+    var ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    ctx.rect(xPos, yPos, player.size, player.size);
+    // ToDo -> Get a random color (which has to be different for each player)
+    ctx.fillStyle = "blue";
+    ctx.fill();
+    ctx.stroke();
+    player.addField([xPos, yPos]);
 }
 
 /**

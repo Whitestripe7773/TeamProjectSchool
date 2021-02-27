@@ -72,3 +72,7 @@ Version: 0.0.5
 27.02.2021 - DF
 - First attempt of fillAll method
 - It is not working right now
+
+27.02.2021 - DF
+- fillAll method is ready but still bugged
+- Player won't move anymore when he hits a wall
