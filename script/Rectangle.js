@@ -120,18 +120,9 @@ class Rectangle{
         this.xPos += this.size;
         var ctx = canvas.getContext("2d");
 
-        ctx.beginPath();
-        ctx.rect(this.xPos, this.yPos, this.size, this.size);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.stroke();
+        this.drawRectangle(ctx, this.xPos, this.yPos, this.size, this.size)
 
-        //draws the rectangle with little dot in it
-        ctx.beginPath();
-        ctx.rect(this.xPos+this.size/4, this.yPos+this.size/4, this.size/2, this.size/2);
-        ctx.fillStyle = "red";
-        ctx.fill();
-        ctx.stroke();
+        this.drawDot(ctx, this.xPos+this.size/4, this.yPos+this.size/4, this.size/2, this.size/2)
 
         this.clearDot(ctx, this.xPos - this.size, this.yPos, this.size)
     }
@@ -146,21 +137,11 @@ class Rectangle{
         this.xPos -= this.size;
         var ctx = canvas.getContext("2d");
 
-        ctx.beginPath();
-        ctx.rect(this.xPos, this.yPos, this.size, this.size);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.stroke();
+        this.drawRectangle(ctx, this.xPos, this.yPos, this.size, this.size)
 
-        //draws the rectangle with little dot in it
-        ctx.beginPath();
-        ctx.rect(this.xPos+this.size/4, this.yPos+this.size/4, this.size/2, this.size/2);
-        ctx.fillStyle = "red";
-        ctx.fill();
-        ctx.stroke();
+        this.drawDot(ctx, this.xPos+this.size/4, this.yPos+this.size/4, this.size/2, this.size/2)
         
         this.clearDot(ctx, this.xPos + this.size, this.yPos, this.size)
-        
     }
 
     /**
@@ -173,18 +154,9 @@ class Rectangle{
         this.yPos -= this.size;
         var ctx = canvas.getContext("2d");
 
-        ctx.beginPath();
-        ctx.rect(this.xPos, this.yPos, this.size, this.size);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.stroke();
+        this.drawRectangle(ctx, this.xPos, this.yPos, this.size, this.size)
         
-        //draws the rectangle with little dot in it
-        ctx.beginPath();
-        ctx.rect(this.xPos+this.size/4, this.yPos+this.size/4, this.size/2, this.size/2);
-        ctx.fillStyle = "red";
-        ctx.fill();
-        ctx.stroke();
+        this.drawDot(ctx, this.xPos+this.size/4, this.yPos+this.size/4, this.size/2, this.size/2)
 
         this.clearDot(ctx, this.xPos, this.yPos + this.size, this.size)
     }
@@ -199,22 +171,53 @@ class Rectangle{
         this.yPos += this.size;
         var ctx = canvas.getContext("2d");
 
-        ctx.beginPath();
-        ctx.rect(this.xPos, this.yPos, this.size, this.size);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.stroke();
+        this.drawRectangle(ctx, this.xPos, this.yPos, this.size, this.size)
 
-         //draws the rectangle with little dot in it
-         ctx.beginPath();
-         ctx.rect(this.xPos+this.size/4, this.yPos+this.size/4, this.size/2, this.size/2);
-         ctx.fillStyle = "red";
-         ctx.fill();
-         ctx.stroke();
+        this.drawDot(ctx, this.xPos + this.size/4, this.yPos + this.size/4, this.size/2)
 
         this.clearDot(ctx, this.xPos, this.yPos - this.size, this.size);
     }
 
+    /**
+     * Draws a rectangle at [xPos | yPos] with the given size
+     * @param {Context of canvas} ctx 
+     * @param {X-Position - Start} xPos 
+     * @param {Y - Position Start} yPos 
+     * @param {Size to draw} size 
+     */
+    drawRectangle(ctx, xPos, yPos, size){
+        ctx.beginPath();
+        ctx.rect(xPos, yPos, size, size);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    /**
+     * Draws a dot at [xPos | yPos] with the given size
+     * Will be used to draw a dot within a rectangle
+     * @param {Context of canvas} ctx 
+     * @param {X-Position - Start} xPos 
+     * @param {Y - Position Start} yPos 
+     * @param {Size to draw} size 
+     */
+    drawDot(ctx, xPos, yPos, size){
+        //draws the rectangle with little dot in it
+        ctx.beginPath();
+        ctx.rect(xPos, yPos, size, size);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    /**
+     * Clears the dot at [xPos | yPos] with the given size
+     * Will be used to clear the dot that was drawn before
+     * @param {Context of canvas} ctx 
+     * @param {X-Position - Start} xPos 
+     * @param {Y - Position Start} yPos 
+     * @param {Size to draw} size 
+     */
     clearDot(ctx, xPos, yPos, size){
         //clears the previous drawn rectangle with the little dot
         ctx.beginPath();
@@ -226,6 +229,10 @@ class Rectangle{
         ctx.stroke();
     }
 
+    /**
+     * Adds a field to the visitedFields list
+     * @param {Field [x | y]} field 
+     */
     addField(field){
         this.visitedFields.push(field);
     }
