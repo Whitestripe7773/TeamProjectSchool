@@ -85,3 +85,6 @@ Version: 0.0.5
 27.02.2021 - JZ
 - red dot is now visible in the leading rectangle
   --> distinguishable from other rectangles
+
+28.02.2021 - DF
+- Refactoring Rectangle class
