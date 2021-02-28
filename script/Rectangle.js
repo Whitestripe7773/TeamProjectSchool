@@ -117,15 +117,32 @@ class Rectangle{
      * @param {Canvas that we draw on} canvas
      */
     updateXPositive(canvas){
+        this.xPos += this.size;
         var ctx = canvas.getContext("2d");
 
         ctx.beginPath();
-        ctx.rect(this.xPos + this.size, this.yPos, this.size, this.size);
+        ctx.rect(this.xPos, this.yPos, this.size, this.size);
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
+
+        //draws the rectangle with little dot in it
+        ctx.beginPath();
+        ctx.rect(this.xPos+this.size/4, this.yPos+this.size/4, this.size-this.size/2, this.size-this.size/2);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.stroke();
         
-        this.xPos += this.size;
+        //clears the previous drawn rectangle with the little dot
+        ctx.beginPath();
+        //ctx.clearRect(this.xPos-this.size, this.yPos, this.size, this.size);
+        ctx.rect(this.xPos-this.size, this.yPos, this.size, this.size)
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = "black"
+        ctx.lineWidth = 1
+        ctx.fill();
+        ctx.stroke();
+        
     }
 
      /**
@@ -135,15 +152,32 @@ class Rectangle{
      * @param {Canvas that we draw on} canvas
      */
     updateXNegative(canvas){
+        this.xPos -= this.size;
         var ctx = canvas.getContext("2d");
 
         ctx.beginPath();
-        ctx.rect(this.xPos - this.size, this.yPos, this.size, this.size);
+        ctx.rect(this.xPos, this.yPos, this.size, this.size);
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
+
+        //draws the rectangle with little dot in it
+        ctx.beginPath();
+        ctx.rect(this.xPos+this.size/4, this.yPos+this.size/4, this.size-this.size/2, this.size-this.size/2);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.stroke();
+
+        //clears the previous drawn rectangle with the little dot
+        ctx.beginPath();
+        //ctx.clearRect(this.xPos+this.size, this.yPos, this.size, this.size);
+        ctx.rect(this.xPos+this.size, this.yPos, this.size, this.size)
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = "black"
+        ctx.lineWidth = 1
+        ctx.fill();
+        ctx.stroke();
         
-        this.xPos -= this.size;
     }
 
     /**
@@ -153,15 +187,31 @@ class Rectangle{
      * @param {Canvas that we draw on} canvas
      */
     updateYPositive(canvas){
+        this.yPos -= this.size;
         var ctx = canvas.getContext("2d");
 
         ctx.beginPath();
-        ctx.rect(this.xPos, this.yPos - this.size, this.size, this.size);
+        ctx.rect(this.xPos, this.yPos, this.size, this.size);
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
         
-        this.yPos -= this.size;
+        //draws the rectangle with little dot in it
+        ctx.beginPath();
+        ctx.rect(this.xPos+this.size/4, this.yPos+this.size/4, this.size-this.size/2, this.size-this.size/2);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.stroke();
+
+        //clears the previous drawn rectangle with the little dot
+        ctx.beginPath();
+        //ctx.clearRect(this.xPos+this.size, this.yPos, this.size, this.size);
+        ctx.rect(this.xPos, this.yPos+this.size, this.size, this.size)
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = "black"
+        ctx.lineWidth = 1
+        ctx.fill();
+        ctx.stroke();
     }
     
     /**
@@ -171,15 +221,32 @@ class Rectangle{
      * @param {Canvas that we draw on} canvas
      */
     updateYNegative(canvas){
+        this.yPos += this.size;
         var ctx = canvas.getContext("2d");
 
         ctx.beginPath();
-        ctx.rect(this.xPos, this.yPos + this.size, this.size, this.size);
+        ctx.rect(this.xPos, this.yPos, this.size, this.size);
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
+
+         //draws the rectangle with little dot in it
+         ctx.beginPath();
+         ctx.rect(this.xPos+this.size/4, this.yPos+this.size/4, this.size-this.size/2, this.size-this.size/2);
+         ctx.fillStyle = "red";
+         ctx.fill();
+         ctx.stroke();
+
+         //clears the previous drawn rectangle with the little dot
+        ctx.beginPath();
+        //ctx.clearRect(this.xPos+this.size, this.yPos, this.size, this.size);
+        ctx.rect(this.xPos, this.yPos-this.size, this.size, this.size)
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = "black"
+        ctx.lineWidth = 1
+        ctx.fill();
+        ctx.stroke();
         
-        this.yPos += this.size;
     }
 
     addField(field){
