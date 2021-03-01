@@ -1,3 +1,4 @@
+
 /**
  * @var {time left before the game is over} timeLeft 
  * @var {game points that a player has} points 
@@ -12,6 +13,86 @@ var positions = {};
 var players = 1;
 
 //const socket = io();
+
+
+//////////////////////////////////////////////////
+/**
+ * For testing purpose
+
+function test(){
+    console.log("Sync 1 ");
+    setTimeout(_ => console.log("Timeout2"), 0);
+    Promise.resolve().then(_ => console.log('Promise 3'));
+    console.log("Sync 4");
+
+    const posts = [
+        {title: 'Post One', body: "This is post one"},
+        {title: 'Post Two', body: "This is post two"}
+    ]
+
+    function getPosts(){
+        setTimeout(() => {
+            let output = '';
+            posts.forEach((post) => {
+                output += `<li>${post.title}</li>`;
+            });
+            document.body.innerHTML = output;
+        }, 1000);
+    }
+
+    function createPost(post, callback){
+        setTimeout(() => {
+            posts.push(post);
+            callback();
+        }, 2000);
+    }
+
+    createPost({title: 'Post three', body: 'This is post three'}, getPosts);
+}
+
+
+function test2(){
+    console.log("Sync 1 ");
+    setTimeout(_ => console.log("Timeout2"), 0);
+    Promise.resolve().then(_ => console.log('Promise 3'));
+    console.log("Sync 4");
+
+    const posts = [
+        {title: 'Post One', body: "This is post one"},
+        {title: 'Post Two', body: "This is post two"}
+    ]
+
+    function getPosts(){
+        setTimeout(() => {
+            let output = '';
+            posts.forEach((post) => {
+                output += `<li>${post.title}</li>`;
+            });
+            document.body.innerHTML = output;
+        }, 1000);
+    }
+
+    function createPost(post){
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                posts.push(post);
+
+                const error = false;
+                if (!error){
+                    resolve();
+                }
+                else{
+                    reject('Error!');
+                }
+            }, 2000);
+        });
+    }
+
+    createPost({title: 'Post three', body: 'This is post three'})
+    .then(getPosts)
+    .catch(err => console.log(err));
+}
+ */
 
 function main(){
 
@@ -53,7 +134,7 @@ function main(){
 
     // Create new rectangle with size of n
     // TODO: get color from color picker (index.html)
-    var rect = new Player("Janniman1939", "black");
+    var rect = new Player("Janniman1939", "blue");
     console.log("Start direction: " + rect.direction);
     rect.debug();
     
@@ -178,47 +259,28 @@ function fillAll(canvas, rect){
     console.time("fillAll");
 
     let inField = []
-    let result = []
     let vFields = rect.visitedFields;
     console.log(vFields);
 
     vFields.sort(sortByX);
     vFields.sort(sortByY);
     
-    debugger;
     console.log({vFields});
 
     /*  For i to len(visitedFields):
             If the x-value of element[i+1] (e.g. [20,0]) is > the x-value of element [i] + 10 (e.g. [0,0] -> [10,0]) AND both y-values are the same:
                 Put the element into the array called "inField"
     */
-    
-
     for(let i = 0; i < vFields.length - 1; i++){
-        //console.log("Iteration: " + i + " vFields[i+1][0] = " + vFields[i+1][0]);;
-        //console.log("Iteration: " + i + " vFields[i][0] + 10 = " + (vFields[i][0] + 10));
-        //console.log("Iteration: " + i + " vFields[i+1][1] = " + vFields[i+1][1]);
-        //console.log("Iteration: " + i + " vFields[i][1] = " + vFields[i][1]);
         if (vFields[i+1][0] > vFields[i][0] + 10 && vFields[i+1][1] == vFields[i][1]){
             if (vFields)
             inField.push([vFields[i][0] + 10, vFields[i+1][1]])
         }
     }
 
-    /*
-    for (let j = 0; j < inField.length; j++){
-        if (inField[j][0] in vFields){
-            inField = inField.filter(item => item != element);
-        }
-    }
-    */
-
-    console.log({vFields ,inField});
-
     for (let j = 0; j < inField.length; j++){
         drawRectAtPos(canvas, rect, inField[j][0], inField[j][1]);
     }
-
     console.timeEnd("fillAll");
 }
 
@@ -371,25 +433,35 @@ function drawRect(canvas, player){
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
 
-    //initial Position of Player
+    // Initial Position of Player
     ctx.rect(player.xPos, player.yPos, player.size, player.size);
 
-    //how big should the "starting field" be? "1" means 1 block layer surrounding the player's initial position
+    // How big should the "starting field" be? "1" means 1 block layer surrounding the player's initial position
     borderLayers = 1
 
-    //drawing the starting field of the player (around the player himself)
-    //for loop iterates through points on y Axis
+    // Drawing the starting field of the player (around the player himself)
+    // For loop iterates through points on y Axis
     for (let i = player.yPos-player.size*borderLayers; i<=player.yPos+player.size*borderLayers; i+=player.size){
         //2nd for loop iterates through x Axis
         for (let j = player.xPos-player.size*borderLayers; j<=player.xPos+player.size*borderLayers; j+=player.size){
             ctx.rect(j,i,player.size,player.size);
         }
     }
-    // ToDo -> Get a random color (which has to be different for each player)
     ctx.fillStyle = "blue";
     ctx.fill();
     ctx.stroke();
-    player.addField([player.xPos, player.yPos]);
+    /* Adds all starting fields to the visitedFields list */
+    player.visitedFields = [...player.visitedFields,
+        [player.xPos, player.yPos],
+        [player.xPos - 10, player.yPos],
+        [player.xPos - 10, player.yPos],
+        [player.xPos, player.yPos - 10],
+        [player.xPos, player.yPos + 10],
+        [player.xPos - 10, player.yPos + 10],
+        [player.xPos + 10, player.yPos + 10],
+        [player.xPos - 10, player.yPos - 10],
+        [player.xPos + 10, player.yPos - 10]
+    ];
 }
 
 function drawRectAtPos(canvas, player, xPos, yPos){
@@ -397,7 +469,7 @@ function drawRectAtPos(canvas, player, xPos, yPos){
     ctx.beginPath();
     ctx.rect(xPos, yPos, player.size, player.size);
     // ToDo -> Get a random color (which has to be different for each player)
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = player.color;
     ctx.fill();
     ctx.stroke();
     player.addField([xPos, yPos]);

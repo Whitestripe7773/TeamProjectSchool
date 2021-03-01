@@ -12,7 +12,6 @@ class Rectangle{
     xPos;
     yPos;
     direction;
-    color;
     visitedFields = [];
 
     /** Constructor
@@ -24,7 +23,6 @@ class Rectangle{
         this.xPos = getRandomX();
         this.yPos = getRandomY();
         this.direction = this.getRandomDirection();
-        this.color = "blue";
     }
 
     /* Setter */
@@ -103,7 +101,6 @@ class Rectangle{
 
         ctx.beginPath();
         ctx.rect(this.xPos + this.size, this.yPos, this.size, this.size);
-        ctx.fillStyle = this.color;
         ctx.fill();
         ctx.stroke();
         
@@ -171,7 +168,7 @@ class Rectangle{
         this.yPos += this.size;
         var ctx = canvas.getContext("2d");
 
-        this.drawRectangle(ctx, this.xPos, this.yPos, this.size, this.size)
+        this.drawRectangle(ctx)
 
         this.drawDot(ctx, this.xPos + this.size/4, this.yPos + this.size/4, this.size/2)
 
@@ -181,16 +178,13 @@ class Rectangle{
     /**
      * Draws a rectangle at [xPos | yPos] with the given size
      * @param {Context of canvas} ctx 
-     * @param {X-Position - Start} xPos 
-     * @param {Y - Position Start} yPos 
-     * @param {Size to draw} size 
      */
-    drawRectangle(ctx, xPos, yPos, size){
-        ctx.beginPath();
-        ctx.rect(xPos, yPos, size, size);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.stroke();
+    drawRectangle(ctx){
+    const {xPos, yPos, size} = this;
+    ctx.beginPath();
+    ctx.rect(xPos, yPos, size, size);
+    ctx.fill();
+    ctx.stroke();
     }
 
     /**
@@ -202,7 +196,6 @@ class Rectangle{
      * @param {Size to draw} size 
      */
     drawDot(ctx, xPos, yPos, size){
-        //draws the rectangle with little dot in it
         ctx.beginPath();
         ctx.rect(xPos, yPos, size, size);
         ctx.fillStyle = "red";
@@ -219,9 +212,7 @@ class Rectangle{
      * @param {Size to draw} size 
      */
     clearDot(ctx, xPos, yPos, size){
-        //clears the previous drawn rectangle with the little dot
         ctx.beginPath();
-        //ctx.clearRect(this.xPos+this.size, this.yPos, this.size, this.size);
         ctx.rect(xPos, yPos, size, size)
         ctx.fillStyle = this.color;
         ctx.strokeStyle = "black"
@@ -251,7 +242,7 @@ function getRandomInt(max) {
  * Multiple of 10
  */
 function getRandomX(){
-    var x = Math.ceil((getRandomInt(1180) + 20 ) / 10) * 10;
+    var x = Math.ceil((getRandomInt(1180) - 10) / 10) * 10;
     return x;
 }
 
@@ -260,7 +251,7 @@ function getRandomX(){
  * Multiple of 10
  */
 function getRandomY(){
-    var y = Math.ceil((getRandomInt(700) + 20) / 10) * 10;
+    var y = Math.ceil((getRandomInt(700) - 10) / 10) * 10;
     return y;
 }
 

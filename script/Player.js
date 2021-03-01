@@ -2,15 +2,15 @@ class Player extends Rectangle{
 
     static name_points = [[]]; // 2D List storing the following information of every player: [ [name, points], [name, points],... ]
     nickname;
-    colour;
+    color;
 
     rank;
     points;
 
-    constructor(nickname, colour){
+    constructor(nickname, color){
         super(10);
         this.nickname = nickname;
-        this.colour = colour;
+        this.color = color;
     }
 
     calculatePoints(){
