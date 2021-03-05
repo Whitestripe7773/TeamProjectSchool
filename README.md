@@ -92,3 +92,10 @@ Version: 0.0.5
 05.03.2021 - JZ
 - Player class: updatePoints() implemented
 - points get displayed on screen
+
+05.03.2021 - JZ
+- ANNOTATION: figured out the problem with display of scoreboard and "Tab" key
+  - browser recognizes "Tab" press event --> event won't be recognized by game
+  - 2 options: 
+      1) leave it as it is (still works "ok")
+      2) choose another Key (then it will work as expected) --> e.g. "KeyQ"
