@@ -352,7 +352,7 @@ function getMaxY(rect){
 function startMatch(rectangle, canvas){
 
 
-    // Move player ever 100ms
+    // Move player every 100ms
     let play = setInterval(function(){
         let currentPos = [rectangle.xPos, rectangle.yPos]
         if (currentPos[0] < 1200 && currentPos[0] > -10 && currentPos[1] < 720 && currentPos[1] > -10)
@@ -366,6 +366,10 @@ function startMatch(rectangle, canvas){
                 }
             }
             rectangle.addField(currentPos);
+
+            //Updates the player's points and wirtes them into the text box
+            rectangle.updatePoints()
+            $(".points").text("Points: " + rectangle.points);
         }
         else{
             console.log("Du bist tot.");

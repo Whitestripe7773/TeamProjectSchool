@@ -13,7 +13,9 @@ class Player extends Rectangle{
         this.color = color;
     }
 
-    calculatePoints(){
+    updatePoints(){
+        //the value of a point could be adjusted (maybe visitedFields.length / 10)
+        this.points = this.visitedFields.length
     }
 
     calclulateRank(name_points){

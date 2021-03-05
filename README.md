@@ -88,3 +88,7 @@ Version: 0.0.5
 
 28.02.2021 - DF
 - Refactoring Rectangle class
+
+05.03.2021 - JZ
+- Player class: updatePoints() implemented
+- points get displayed on screen
