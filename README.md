@@ -99,3 +99,8 @@ Version: 0.0.5
   - 2 options: 
       1) leave it as it is (still works "ok")
       2) choose another Key (then it will work as expected) --> e.g. "KeyQ"
+
+07.03.2021 - JZ
+- reimplemented calculateRank() (Player class)
+  - we will not user name_points[] anymore --> replaced with 1D Array containing all players
+- started to implement populateList() (Playerlist class) TODO: finish implementation 

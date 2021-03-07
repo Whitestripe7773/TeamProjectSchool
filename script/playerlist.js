@@ -41,9 +41,18 @@ class Playerlist{
     // players is a list of all players in the game
     // with jQuerry 
     // aktualisierung bei Tab druck oder mit setInterval()
-    // TODO: implementing players[] in app.js 
-    updateList(players) {
+    static populateList(players) {
+        //TODO: clear html player entries here
 
+        // loops through list containing every player
+        for (let i = 0; i<players.length; i++){
+            // loops throug every possible rank (why? --> to display them in the right order on scoreboard)
+            for (let rankCount = 1; rankCount <= players.length; rankCount++){
+                if (players[i].rank == rankCount){
+                   //TODO: add players (name, point, rank) to html 
+                }
+            }
+        }
         return 0;
     }
 }

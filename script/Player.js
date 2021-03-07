@@ -1,6 +1,6 @@
 class Player extends Rectangle{
 
-    static name_points = [[]]; // 2D List storing the following information of every player: [ [name, points], [name, points],... ]
+    static players = []; // list of all existing players
     nickname;
     color;
 
@@ -11,28 +11,25 @@ class Player extends Rectangle{
         super(10);
         this.nickname = nickname;
         this.color = color;
+        players.push(this)
     }
 
     updatePoints(){
         //the value of a point could be adjusted (maybe visitedFields.length / 10)
         this.points = this.visitedFields.length
+
+        //QUESTION: will players[] get updated automatically? (call by refrence?)
     }
 
-    calclulateRank(name_points){
-        //sorts the list of players: The player with the least points has the first entry.
-        name_points.sort(function(a, b){
-            return a[1] - b[1];
-        });
-
-        rank_counter = name_points.length; // in the beginning: last rank
-
-        name_points.forEach(player_data => {
-            if (this.nickname == player_data[1]){
-                this.rank = rank_counter;
-                return; // this should stop the function 
+    calclulateRank(){
+        let curr_rank = 1;
+        for (let i = 0; i < players.length; i++){
+            // if a player exists with a higher rank --> player who calls this method gets "deranked" (rank += 1)
+            if (this.points < players[i].points){
+                curr_rank += 1;
             }
-            rank_counter -= 1;
-        });
+        }
+        this.rank = curr_rank;
     }
 
 }
