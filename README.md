@@ -89,6 +89,9 @@ Version: 0.0.5
 28.02.2021 - DF
 - Refactoring Rectangle class
 
+29.02.2021 - DF
+- Refactoring a few classes
+
 05.03.2021 - JZ
 - Player class: updatePoints() implemented
 - points get displayed on screen
@@ -99,3 +102,5 @@ Version: 0.0.5
   - 2 options: 
       1) leave it as it is (still works "ok")
       2) choose another Key (then it will work as expected) --> e.g. "KeyQ"
+
+05.03.2021
