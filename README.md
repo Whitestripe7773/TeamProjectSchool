@@ -109,3 +109,6 @@ Version: 0.0.5
 - reimplemented calculateRank() (Player class)
   - we will not user name_points[] anymore --> replaced with 1D Array containing all players
 - started to implement populateList() (Playerlist class) TODO: finish implementation 
+
+13.03.2021 - JZ
+- scoreboard functionality implemented 

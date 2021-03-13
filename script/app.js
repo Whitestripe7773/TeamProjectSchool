@@ -134,7 +134,8 @@ function main(){
 
     // Create new rectangle with size of n
     // TODO: get color from color picker (index.html)
-    var rect = new Player("Janniman1939", "blue");
+    var rect = new Player("xX_Janimannn_Xx", "blue");
+    console.log(Player.players);
     console.log("Start direction: " + rect.direction);
     rect.debug();
     
@@ -219,8 +220,8 @@ function main(){
             }
             break;
     // When "Tab" key is pressed
-        case "Tab":
-            Playerlist.showScoreboard();
+        case "KeyQ":
+            Playerlist.showScoreboard(Player.players);
             break;
         }
     }, true);
@@ -232,7 +233,7 @@ function main(){
         }
 
         switch(event.code) {
-            case "Tab":
+            case "KeyQ":
             Playerlist.hideScoreboard();
             break;
         }

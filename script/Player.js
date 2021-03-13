@@ -11,6 +11,8 @@ class Player extends Rectangle{
         super(10);
         this.nickname = nickname;
         this.color = color;
+        this.rank = 1;
+        this.points = 0;
         Player.players.push(this)
     }
 
