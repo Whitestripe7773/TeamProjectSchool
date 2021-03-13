@@ -38,9 +38,9 @@ class Playerlist{
                 for (let rankCount = 1; rankCount <= players.length; rankCount++){
                     if (players[i].rank == rankCount){
                     //TODO: add players (name, point, rank) to html 
-                    $("#nickname").append("<p class='hidden' id='entry'>"+players[i].nickname+"</p>");
-                    $("#rank").append("<p class='hidden' id='entry'>"+players[i].rank+"</p>");
-                    $("#score").append("<p class='hidden' id='entry'>"+players[i].points+"</p>");
+                    $("#nickname").append("<p class='hidden' id='entry' style='color: "+players[i].color+";'><b>"+players[i].nickname+"</b></p>");
+                    $("#rank").append("<p class='hidden' id='entry' style='color: "+players[i].color+";'><b>"+players[i].rank+"</b></p>");
+                    $("#score").append("<p class='hidden' id='entry' style='color: "+players[i].color+";'><b>"+players[i].points+"</b></p>");
                     }
                 }
             }
