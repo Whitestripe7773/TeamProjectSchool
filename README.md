@@ -115,3 +115,6 @@ Version: 0.0.5
 
 13.03.2021 - JZ
 - user is now able to choose his nickname and his color 
+
+13.03.2021 - JZ
+- color adjustments made in scoreboard
