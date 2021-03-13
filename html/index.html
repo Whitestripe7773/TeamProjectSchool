@@ -5,10 +5,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Play A Cube</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+      <script language="javascript" type="text/javascript" src="../script/app.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <link rel="stylesheet" href="../style/index_style/index.css">
   </head>
 
-  <body>
+  <body onload="getDetails()">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.html">Play A Cube</a>
@@ -42,7 +44,7 @@
               <input class="input textcenter btn btn-primary" type="submit" href="game.html"  value="Play">
             </form>
 
-            <a href="game.html">Play Local</a>
+            <a href="game.html" id="local">Play Local</a>
           </div>
           <!-- Third block -->
           <div class="col-sm-4"></div>

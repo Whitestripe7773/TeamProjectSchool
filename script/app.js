@@ -94,9 +94,28 @@ function test2(){
 }
  */
 
+// see: https://stackoverflow.com/questions/16206322/how-to-get-js-variable-to-retain-value-after-page-refresh#16206342
+let pName
+let pColor
+function getDetails() {
+    let link = document.getElementById('local')
+    
+    link.onclick = function(){ 
+        pColor = $('#playerColour').val()
+        sessionStorage.setItem("pColor", pColor)
+
+        pName = $('#playerName').val()
+        sessionStorage.setItem("pName", pName)
+    }
+}
+
 function main(){
 
     console.log("Starting game...")
+
+    // color and nickname selected by the player
+    pColor = sessionStorage.getItem("pColor");
+    pName = sessionStorage.getItem("pName");
 
     /**
      * @var {Get the canvas from the HTML} myCanvas
@@ -134,7 +153,7 @@ function main(){
 
     // Create new rectangle with size of n
     // TODO: get color from color picker (index.html)
-    var rect = new Player("xX_Janimannn_Xx", "blue");
+    var rect = new Player(pName, pColor);
     console.log(Player.players);
     console.log("Start direction: " + rect.direction);
     rect.debug();
