@@ -471,7 +471,7 @@ function drawRect(canvas, player){
             ctx.rect(j,i,player.size,player.size);
         }
     }
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = player.color;
     ctx.fill();
     ctx.stroke();
     /* Adds all starting fields to the visitedFields list */
