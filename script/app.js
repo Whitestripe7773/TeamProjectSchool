@@ -132,6 +132,11 @@ function main(){
      */
     var gameStarted = false; 
 
+    /**
+     * @var {boolean to show if scoreboard is displayed} boardDisplayed
+     */
+    let boardDisplayed = false;
+
     render(myCanvas, originalHeight, originalWidth);
     
 
@@ -240,7 +245,10 @@ function main(){
             break;
     // When "Tab" key is pressed
         case "KeyQ":
-            Playerlist.showScoreboard(Player.players);
+            if (boardDisplayed != true){
+                Playerlist.showScoreboard(Player.players);
+                boardDisplayed = true;
+            }
             break;
         }
     }, true);
@@ -254,6 +262,7 @@ function main(){
         switch(event.code) {
             case "KeyQ":
             Playerlist.hideScoreboard();
+            boardDisplayed = false;
             break;
         }
 

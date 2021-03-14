@@ -118,3 +118,7 @@ Version: 0.0.5
 
 13.03.2021 - JZ
 - color adjustments made in scoreboard
+
+14.03.2021 - JZ 
+- minor adjustment in app.js
+  --> showScoreboard() now gets invoked only once per click on Q
