@@ -103,8 +103,6 @@ Version: 0.0.5
       1) leave it as it is (still works "ok")
       2) choose another Key (then it will work as expected) --> e.g. "KeyQ"
 
-05.03.2021
-
 07.03.2021 - JZ
 - reimplemented calculateRank() (Player class)
   - we will not user name_points[] anymore --> replaced with 1D Array containing all players
@@ -122,3 +120,6 @@ Version: 0.0.5
 14.03.2021 - JZ 
 - minor adjustment in app.js
   --> showScoreboard() now gets invoked only once per click on Q
+
+14.03.2021 - DF
+- Refactoring app.js

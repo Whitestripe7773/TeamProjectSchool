@@ -278,23 +278,12 @@ function fillAll(canvas, rect){
     // Von y bis max(y in fields)
     // Add every pos to visitedFields
 
-    //let minX = getMinX(rect);
-    //let maxX = getMaxX(rect);
-
-    //let minY = getMinY(rect);
-    //let maxY = getMaxY(rect);
-
     // Starts time to track
-    console.time("fillAll");
 
-    let inField = []
     let vFields = rect.visitedFields;
-    console.log(vFields);
 
     vFields.sort(sortByX);
     vFields.sort(sortByY);
-    
-    console.log({vFields});
 
     /*  For i to len(visitedFields):
             If the x-value of element[i+1] (e.g. [20,0]) is > the x-value of element [i] + 10 (e.g. [0,0] -> [10,0]) AND both y-values are the same:
@@ -302,15 +291,9 @@ function fillAll(canvas, rect){
     */
     for(let i = 0; i < vFields.length - 1; i++){
         if (vFields[i+1][0] > vFields[i][0] + 10 && vFields[i+1][1] == vFields[i][1]){
-            if (vFields)
-            inField.push([vFields[i][0] + 10, vFields[i+1][1]])
+            drawRectAtPos(canvas, rect, vFields[i][0] + 10, vFields[i+1][1]);
         }
     }
-
-    for (let j = 0; j < inField.length; j++){
-        drawRectAtPos(canvas, rect, inField[j][0], inField[j][1]);
-    }
-    console.timeEnd("fillAll");
 }
 
 function sortByX(a, b) {
@@ -330,48 +313,6 @@ function sortByY(a, b) {
         return (a[1] < b[1]) ? -1 : 1;
     }
 }
-
-function getMinX(rect){
-    let minX = rect.visitedFields[0][0];
-    for (let element in rect.visitedFields){
-        if (element[0] < minX) {
-            minX = element[0]
-        } 
-    }
-    return minX
-}
-
-function getMinY(rect){
-    let minY =  rect.visitedFields[0][1];
-    for (let element in rect.visitedFields){
-        if (element[1] < minY) {
-            maxY = element[1]
-        } 
-    }
-    return minY
-}
-
-function getMaxX(rect){
-    let maxX = rect.visitedFields[0][0];
-    for (let element in rect.visitedFields){
-        if (element[0] > maxX) {
-            maxX = element[0]
-        } 
-    }
-    return maxX
-}
-
-function getMaxY(rect){
-    let maxY = rect.visitedFields[0][0];
-    for (let element in rect.visitedFields){
-        if (element[1] > maxY) {
-            maxY = element[1]
-        } 
-    }
-    return maxY
-}
-
-
 
 /**
  * This method starts the match (player movement and time will start)
