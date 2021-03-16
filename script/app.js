@@ -109,7 +109,7 @@ function getDetails() {
     }
 }
 
-function main(){
+window.onload = function() {
 
     console.log("Starting game...")
 
@@ -321,6 +321,16 @@ function sortByY(a, b) {
  */
 function startMatch(rectangle, canvas){
 
+    // Update timer every second (1000 ms)
+    let timer = setInterval(function(){
+        timeLeft -= 1;
+        $(".timer").text("Time left: " + timeLeft);
+
+        // When time hits 0 -> end game
+        if (timeLeft <= 0){
+            clearInterval(timer);
+        }
+    }, 1000);
 
     // Move player every 100ms
     let play = setInterval(function(){
@@ -344,19 +354,9 @@ function startMatch(rectangle, canvas){
         else{
             console.log("Du bist tot.");
             clearInterval(play);
+            clearInterval(timer);
         }
     }, 100);
-
-    // Update time every second (1000 ms)
-    setInterval(function(){
-        timeLeft -= 1;
-        $(".timer").text("Time left: " + timeLeft);
-
-        // When time hits 0 -> finish method is invoked
-        if (timeLeft <= 0){
-            finish();
-        }
-    }, 1000);
 }
 
 /**
@@ -400,7 +400,6 @@ function finish(){
 /**
  * Draws a rectangle for the first time 
  * Also draws the starting field of the player
- * TODO: rethink implementation with regards to color issue and parameters
  * @param {Context of the canvas obj} ctx 
  */
 function drawRect(canvas, player){
@@ -410,32 +409,30 @@ function drawRect(canvas, player){
     // Initial Position of Player
     ctx.rect(player.xPos, player.yPos, player.size, player.size);
 
-    // How big should the "starting field" be? "1" means 1 block layer surrounding the player's initial position
-    borderLayers = 1
+    drawSurroundingBlocks(1, ctx, player);
 
-    // Drawing the starting field of the player (around the player himself)
-    // For loop iterates through points on y Axis
-    for (let i = player.yPos-player.size*borderLayers; i<=player.yPos+player.size*borderLayers; i+=player.size){
-        //2nd for loop iterates through x Axis
-        for (let j = player.xPos-player.size*borderLayers; j<=player.xPos+player.size*borderLayers; j+=player.size){
-            ctx.rect(j,i,player.size,player.size);
-        }
-    }
     ctx.fillStyle = player.color;
     ctx.fill();
     ctx.stroke();
-    /* Adds all starting fields to the visitedFields list */
-    player.visitedFields = [...player.visitedFields,
-        [player.xPos, player.yPos],
-        [player.xPos - 10, player.yPos],
-        [player.xPos - 10, player.yPos],
-        [player.xPos, player.yPos - 10],
-        [player.xPos, player.yPos + 10],
-        [player.xPos - 10, player.yPos + 10],
-        [player.xPos + 10, player.yPos + 10],
-        [player.xPos - 10, player.yPos - 10],
-        [player.xPos + 10, player.yPos - 10]
-    ];
+}
+
+
+/**
+ * Draws the starting field around the player
+ * @param {Layer surrounding the player's initial position (in blocks)} borderLayers 
+ * @param {Context of canvas} ctx 
+ * @param {Player} player 
+ */
+function drawSurroundingBlocks(borderLayers, ctx, player){
+    // Loop iterates through points on y Axis
+    for (let i = player.yPos-player.size*borderLayers; i<=player.yPos+player.size*borderLayers; i+=player.size){
+        // Loop iterates through x Axis
+        for (let j = player.xPos-player.size*borderLayers; j<=player.xPos+player.size*borderLayers; j+=player.size){
+            ctx.rect(j,i,player.size,player.size);
+            // Adds field to visitedFields list
+            player.visitedFields.push([j, i]);
+        }
+    }
 }
 
 function drawRectAtPos(canvas, player, xPos, yPos){
@@ -449,37 +446,8 @@ function drawRectAtPos(canvas, player, xPos, yPos){
     player.addField([xPos, yPos]);
 }
 
-/**
- * Changes the opacity when the mouse is hovering over the top data (time left etc)
- * -> Text will be nearly invisible
- * @param {document or class/id} doc 
- */
-function highOpacity(doc){
-    doc.style.opacity = 0.99;
-}
-
-/**
-// Changes the opacity when the mouse is hovering over the top data (time left etc)
- * -> Text will be clearly visible
- * @param {document or class/id} doc 
- */
-function lowOpacity(doc){
-    doc.style.opacity = 0.2;
-}
-
-/** Optional
- * This was for testing purpose, don't delete it!
- * Logs the cursor position (x,y) when clicking somewhere in the canvas
-*/
-function getCursorPosition(canvas, event){
-    var box = canvas[0].getBoundingClientRect();
-    var x = event.clientX - box.left;
-    var y = event.clientY - box.top;
-    return [x, y];
-}
-
 // Fits the object size to the canvas (rectangles won't be pixelated)
-// adapted from: https://www.npmjs.com/package/intrinsic-scale
+// Adapted from: https://www.npmjs.com/package/intrinsic-scale
 function getObjectFitSize(
     contains /* true = contain, false = cover */,
     containerWidth,
@@ -507,4 +475,16 @@ function getObjectFitSize(
       x: (containerWidth - targetWidth) / 2,
       y: (containerHeight - targetHeight) / 2
     };
+}
+
+// -------------------------------------------------------------------------------------------------------------------------------
+/** Optional
+ * This was for testing purpose, don't delete it!
+ * Logs the cursor position (x,y) when clicking somewhere in the canvas
+*/
+function getCursorPosition(canvas, event){
+    var box = canvas[0].getBoundingClientRect();
+    var x = event.clientX - box.left;
+    var y = event.clientY - box.top;
+    return [x, y];
 }
