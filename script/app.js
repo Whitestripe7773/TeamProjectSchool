@@ -94,6 +94,55 @@ function test2(){
 }
  */
 
+
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+const db = admin.firestore();
+
+
+let firebaseConfig = {
+    apiKey: "AIzaSyCc6aLbXUYIlQ72rdf_umj7DPKqFbT5eQ0",
+    authDomain: "playacube-f2f4e.firebaseapp.com",
+    databaseURL: "https://playacube-f2f4e-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "playacube-f2f4e",
+    storageBucket: "playacube-f2f4e.appspot.com",
+    messagingSenderId: "787527385282",
+    appId: "1:787527385282:web:a703bf6c728e8bcf6ebb5b"
+};
+
+
+// Initialize Cloud Firestore through Firebase
+firebase.initializeApp({
+    apiKey: firebaseConfig['apiKey'],
+    authDomain: firebaseConfig['authDomain'],
+    projectId: firebaseConfig['projectId']
+});
+
+
+function addToDatabase(player){
+    db.collection("players").add({
+        nickname: player,
+        points: 100
+    })
+    .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
+function readFromDatabase(){
+    db.collection("players")
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+        });
+    });
+}
+
 // see: https://stackoverflow.com/questions/16206322/how-to-get-js-variable-to-retain-value-after-page-refresh#16206342
 let pName
 let pColor
