@@ -40,4 +40,11 @@ html, body {
   visibility: hidden;
   background-color: lightgrey;
 }
+
+.finish {
+  background-color: lightgray;
+  padding: 20px;
+  border-radius: 10px;
+  visibility: hidden;
+}
 /*# sourceMappingURL=game.css.map */
