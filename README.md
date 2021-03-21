@@ -130,3 +130,6 @@ Version: 0.0.5
 
 21.03.2021 - JZ
 - css and html edited for finish dialog
+
+21.03.2021 - JZ
+- fully implemented finish dialog

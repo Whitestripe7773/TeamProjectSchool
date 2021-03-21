@@ -213,6 +213,9 @@ function fillAll(canvas, rect){
             drawRectAtPos(canvas, rect, vFields[i][0] + 10, vFields[i+1][1]);
         }
     }
+    //Updates the player's points and wirtes them into the text box
+    rect.updatePoints()
+    $(".points").text("Points: " + rect.points);
 }
 
 function sortByX(a, b) {
@@ -246,8 +249,8 @@ function startMatch(rectangle, canvas){
         $(".timer").text("Time left: " + timeLeft);
 
         // When time hits 0 -> end game
-        if (timeLeft <= 0){
-            clearInterval(timer);
+        if (timeLeft <= 0){;
+            finish(play, timer, rectangle);
         }
     }, 1000);
 
@@ -266,14 +269,11 @@ function startMatch(rectangle, canvas){
             }
             rectangle.addField(currentPos);
 
-            //Updates the player's points and wirtes them into the text box
-            rectangle.updatePoints()
-            $(".points").text("Points: " + rectangle.points);
+            //$(".points").text("Points: " + rectangle.points); --> moved this code to fillAll()
         }
         else{
             console.log("Du bist tot.");
-            clearInterval(play);
-            clearInterval(timer);
+            finish(play, timer, rectangle);
         }
     }, 100);
 }
@@ -311,9 +311,19 @@ function render(myCanvas, originalHeight, originalWidth) {
 /**
  * This method will be activated after 60 seconds passed
  */
-function finish(){
-    // Code here
-    // -> Look at Trello Board "Pop Up Ending"
+function finish(play, timer, rectangle){
+    // stops the game
+    clearInterval(play);
+    clearInterval(timer);
+
+    // populates finish dialog
+    $("#nickname_finish").append("<b style='color: "+rectangle.color+";'>"+rectangle.nickname+"</b>");
+    $("#points_finish").append(rectangle.points);
+    $("#rank_finish").append(rectangle.rank);
+
+    // displays finish dialog
+    let dialog = document.getElementById("finish");
+    dialog.style.visibility = 'visible';
 }
 
 /**
