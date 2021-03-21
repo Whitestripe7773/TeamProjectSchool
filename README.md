@@ -133,3 +133,6 @@ Version: 0.0.5
 
 21.03.2021 - JZ
 - fully implemented finish dialog
+
+21.03.2021 - JZ
+- small desin changes in game.html (finish dialog)
