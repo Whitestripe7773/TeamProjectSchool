@@ -126,3 +126,4 @@ Version: 0.0.5
 
 21.03.2021 - DF
 - Delete Firebase from project
+- Add mock-service to project
