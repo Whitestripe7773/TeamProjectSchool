@@ -123,3 +123,6 @@ Version: 0.0.5
 
 14.03.2021 - DF
 - Refactoring app.js
+
+21.03.2021 - DF
+- Delete Firebase from project
