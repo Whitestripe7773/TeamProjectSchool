@@ -213,7 +213,7 @@ function fillAll(canvas, rect){
             drawRectAtPos(canvas, rect, vFields[i][0] + 10, vFields[i+1][1]);
         }
     }
-    //Updates the player's points and wirtes them into the text box
+    //Updates the player's points and writes them into the text box
     rect.updatePoints()
     $(".points").text("Points: " + rect.points);
 }

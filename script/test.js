@@ -12,7 +12,7 @@ const getName = async (category, method = 'GET', payload) => {
     for (const player of data) {
       const item = document.createElement('p')
       item.innerHTML = JSON.stringify(player['playerName']);
-      item.innerHTML += "<br> Points:" +  JSON.stringify(player['points'])
+      item.innerHTML += "<br> Points: " +  JSON.stringify(player['points'])
       testDiv.appendChild(item)
     }
 }

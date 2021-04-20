@@ -136,3 +136,10 @@ Version: 0.0.5
 
 21.03.2021 - JZ
 - small desin changes in game.html (finish dialog)
+
+20.04.20021 - DF
+- Creating highscore site
+- Implementing first version of mock service
+- GET via mock service works
+- Trying to use import data from a csv
+- Adding test.csv
