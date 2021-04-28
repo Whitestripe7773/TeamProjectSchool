@@ -1,6 +1,6 @@
 class Player extends Rectangle{
 
-    static players = []; // list of all existing players
+    static players = []; // List of all existing players
     nickname;
     color;
 
@@ -20,10 +20,7 @@ class Player extends Rectangle{
      * Updates the points of the player object
      */
     updatePoints(){
-        //the value of a point could be adjusted (maybe visitedFields.length / 10)
         this.points = this.visitedFields.length
-
-        //QUESTION: will players[] get updated automatically? (call by refrence?)
     }
 
     /**
@@ -32,7 +29,7 @@ class Player extends Rectangle{
     calclulateRank(){
         let curr_rank = 1;
         for (let i = 0; i < players.length; i++){
-            // if a player exists with a higher rank --> player who calls this method gets "deranked" (rank += 1)
+            // If a player exists with a higher rank --> player who calls this method gets "deranked" (rank += 1)
             if (this.points < players[i].points){
                 curr_rank += 1;
             }

@@ -282,7 +282,7 @@ function startMatch(rectangle, canvas){
 }
 
 /**
- * adapted from https://medium.com/@doomgoober/understanding-html-canvas-scaling-and-sizing-c04925d9a830
+ * Adapted from https://medium.com/@doomgoober/understanding-html-canvas-scaling-and-sizing-c04925d9a830
  * @param {Canvas object} myCanvas 
  * @param {Original height of the canvas} originalHeight 
  * @param {Original width of the canvas} originalWidth 

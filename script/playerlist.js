@@ -7,23 +7,22 @@ class Playerlist{
         Playerlist.populateList(players)
         var arr = Array.prototype.slice.call(SCOREBOARD)
         arr.forEach(heading => {
-            //heading.style.fontSize = 'x-large';
             heading.style.visibility = 'visible';
         });
     }
     
     static hideScoreboard(){
-        $("p").remove() //--> entries of scoreboard get removed when board is hidden
+        $("p").remove() //--> Entries of scoreboard get removed when board is hidden
         var arr = Array.prototype.slice.call(SCOREBOARD)
         arr.forEach(heading => {
-            //heading.style.fontSize = '0px';
             heading.style.visibility = 'hidden';
         });
     }
 
-    // players is a list of all players in the game
-    // with jQuerry 
-    // aktualisierung bei Tab druck oder mit setInterval()
+    /**
+     * This method updates the Ranking list with the players and populates them
+     * @param {List of players} players 
+     */
     static populateList(players) {
         // this if statement fixes the bug with endless entries when holding down "Q"
         if( $('#nickname').children().length == 1 ){
