@@ -37,7 +37,7 @@ class Playerlist{
         if( $('#nickname').children().length == 1 ){
             // loops through list containing every player
             for (let i = 0; i<players.length; i++){
-                // loops throug every possible rank (why? --> to display them in the right order on scoreboard)
+                // loops through every possible rank (why? --> to display them in the right order on scoreboard)
                 for (let rankCount = 1; rankCount <= players.length; rankCount++){
                     if (players[i].rank == rankCount){
                         // adds players (name, point, rank) to html 
