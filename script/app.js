@@ -84,8 +84,6 @@ window.onload = function() {
     
     // Draws the rect with the pos of the created rect and size of it
     drawRect(myCanvas, rect);
-    //fillAll(myCanvas, rect);
-
     
     // Player Movement -> This needs to be refactored maybe
     // Listens to the keys
@@ -193,31 +191,33 @@ window.onload = function() {
 
 
 function fillAll(canvas, rect){
-    // Von x bis max(x in fields)
-    // Von y bis max(y in fields)
-    // Add every pos to visitedFields
-
-    // Starts time to track
 
     let vFields = rect.visitedFields;
 
+    // Sorts visitedFields by X, then by Y
     vFields.sort(sortByX);
     vFields.sort(sortByY);
 
-    /*  For i to len(visitedFields):
-            If the x-value of element[i+1] (e.g. [20,0]) is > the x-value of element [i] + 10 (e.g. [0,0] -> [10,0]) AND both y-values are the same:
-                Put the element into the array called "inField"
+    /** 
+        # vFields ist eine Liste von Listen z. B. [[0, 0], [10, 0], [20, 0], [30, 0], [0, 10], [30, 10]]
+        # Wir gehen durch jedes Element im sortierten visitedFields
+        # Dort schauen wir dann, ob das nächste Element (Beispiel: [30, 10]) auf der X-Achse größer ist als das jetzige Element [0, 10] + 10 = [10, 10] und beide Y-Werte gleich sind:
+            # Wenn dem so ist, dann wird zwischen den beiden ein Rechteck gezeichnet
     */
     for(let i = 0; i < vFields.length - 1; i++){
         if (vFields[i+1][0] > vFields[i][0] + 10 && vFields[i+1][1] == vFields[i][1]){
             drawRectAtPos(canvas, rect, vFields[i][0] + 10, vFields[i+1][1]);
         }
     }
-    //Updates the player's points and writes them into the text box
+    // Updates the player's points and writes them into the text box
     rect.updatePoints()
     $(".points").text("Points: " + rect.points);
 }
 
+/**
+ * @param {Array one} a 
+ * @param {Array two} b 
+ */
 function sortByX(a, b) {
     if (a[0] === b[0]) {
         return 0;
@@ -227,6 +227,10 @@ function sortByX(a, b) {
     }
 }
 
+/**
+ * @param {Array one} a 
+ * @param {Array two} b 
+ */
 function sortByY(a, b) {
     if (a[1] === b[1]) {
         return 0;
@@ -268,11 +272,10 @@ function startMatch(rectangle, canvas){
                 }
             }
             rectangle.addField(currentPos);
-
-            //$(".points").text("Points: " + rectangle.points); --> moved this code to fillAll()
         }
         else{
-            console.log("Du bist tot.");
+            sessionStorage.setItem(pName + "-points", rectangle.points);
+            console.log(sessionStorage.getItem(pName+"-points"));
             finish(play, timer, rectangle);
         }
     }, 100);

@@ -3,11 +3,6 @@ const NICKNAME = document.getElementById('nickname');
 
 class Playerlist{
 
-    //values will be displayed on scoreboard
-    nicknames = [];
-    ranks = [];
-    points_per_player = [];
-
     static showScoreboard(players) {
         Playerlist.populateList(players)
         var arr = Array.prototype.slice.call(SCOREBOARD)
@@ -46,12 +41,4 @@ class Playerlist{
             }
         }
     }
-}
-
-
-/**
- * ToDo -> Implement updateRank, based on the points
- */
-function updateRank(oldRank){
-
 }

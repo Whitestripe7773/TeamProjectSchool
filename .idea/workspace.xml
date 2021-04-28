@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="50693154-82bf-47c4-b89a-bcc67735b69c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Algorithmus.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Beispielbild 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Beispielbild 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test Bild 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test Bild 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/highscores.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/highscores.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mock-srv/routes/testing/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/Player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/app_test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/playerlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/playerlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/serverTest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/server_test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_script 1.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1rhcuZUfOOrwt2JjwgLdMKLGXSe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PythonProjects" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50693154-82bf-47c4-b89a-bcc67735b69c" name="Default Changelist" comment="" />
+      <created>1619431986109</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619431986109</updated>
+    </task>
+    <servers />
+  </component>
+</project>

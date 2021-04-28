@@ -16,6 +16,9 @@ class Player extends Rectangle{
         Player.players.push(this)
     }
 
+    /**
+     * Updates the points of the player object
+     */
     updatePoints(){
         //the value of a point could be adjusted (maybe visitedFields.length / 10)
         this.points = this.visitedFields.length
@@ -23,6 +26,9 @@ class Player extends Rectangle{
         //QUESTION: will players[] get updated automatically? (call by refrence?)
     }
 
+    /**
+     * Calculates the rank of the player
+     */
     calclulateRank(){
         let curr_rank = 1;
         for (let i = 0; i < players.length; i++){

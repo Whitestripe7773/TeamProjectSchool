@@ -137,9 +137,17 @@ Version: 0.0.5
 21.03.2021 - JZ
 - small desin changes in game.html (finish dialog)
 
-20.04.20021 - DF
+20.04.2021 - DF
 - Creating highscore site
 - Implementing first version of mock service
 - GET via mock service works
 - Trying to use import data from a csv
 - Adding test.csv
+
+28.04.2021 - DF
+- Finishing Mock-Service with GET operation
+- Highscores are now working correctly (server has to be started b4)
+- To start the server: Open cmd and navigate to "mock-srv", then do "npm run dev"
+- Deleting unneccesary files
+- Refactoring
+- Correcting Typos
