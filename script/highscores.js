@@ -24,19 +24,24 @@ const getPlayerData = async (foo, method = 'GET', payload) => {
       testDiv.appendChild(item)
     }
 
-    const item = document.createElement('p');
-    item.innerHTML = sessionStorage.getItem("pName");
-    item.innerHTML += "<br> Points: " + sessionStorage.getItem(sessionStorage.getItem("pName") + "-points");
-    testDiv.appendChild(item);
+    if (sessionStorage.getItem(sessionStorage.getItem("pName") + "-points") != null){
+      const item = document.createElement('p');
+      item.innerHTML = sessionStorage.getItem("pName");
+      item.innerHTML += "<br> Points: " + sessionStorage.getItem(sessionStorage.getItem("pName") + "-points");
+      testDiv.appendChild(item);
+    }
 }
 
 // Starts the function when the highscore site is loaded
 window.onload = function() {
     getPlayerData("highscores", "GET", "test");
 
-    const payload = {
-      playerName: sessionStorage.getItem("pName"),
-      points: sessionStorage.getItem(sessionStorage.getItem("pName") + "-points")
+    if (sessionStorage.getItem(sessionStorage.getItem("pName") + "-points") != null){
+      const payload = {
+        playerName: sessionStorage.getItem("pName"),
+        points: sessionStorage.getItem(sessionStorage.getItem("pName") + "-points")
+      }
+      getPlayerData("highscores", 'POST', payload);
     }
-    getPlayerData("highscores", 'POST', payload);
+    
 }
